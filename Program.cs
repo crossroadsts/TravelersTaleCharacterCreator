@@ -78,6 +78,8 @@ class Program
                 break;
         }
 
+        // todo: pick Discipline
+
         Console.WriteLine("Select 5 Proficiencies (press enter after each):");
         int profNum = 1;
         foreach (var prof in character.PossibleProficiencies)
@@ -169,6 +171,8 @@ class Program
         // todo: roll for XP
 
         // todo: pick vocational skills
+
+        // todo: anima?
 
         Console.WriteLine("Input Character Name:");
         character.Name = Console.ReadLine();
