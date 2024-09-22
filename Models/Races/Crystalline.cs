@@ -24,5 +24,8 @@ public class Crystalline : BaseCharacter
             ProficienciesEnum.Navigation,
             ProficienciesEnum.Deduction,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 12 + this.Vigor;
     }
 }

@@ -18,7 +18,16 @@ class Program
 
         switch(raceSelection) {
             case RaceEnum.Angelicon:
-                character = new Angelicon();
+                Console.WriteLine("Select an Angelicon Type:");
+                
+                foreach (var angeliconType in Enum.GetValues(typeof(AngeliconType)))
+                {
+                    Console.WriteLine((int)angeliconType + ": " + angeliconType);
+                }
+                int angeliconTypeInput = Convert.ToInt32(Console.ReadLine());
+                var angeliconTypeSelection = (AngeliconType)angeliconTypeInput;
+
+                character = new Angelicon(angeliconTypeSelection);
                 break;
             case RaceEnum.Crystalline:
                 character = new Crystalline();
@@ -27,7 +36,16 @@ class Program
                 character = new Dagon();
                 break;
             case RaceEnum.FallenAngelicon:
-                character = new FallenAngelicon();
+                Console.WriteLine("Select a Fallen Angelicon Type:");
+                
+                foreach (var angeliconType in Enum.GetValues(typeof(AngeliconType)))
+                {
+                    Console.WriteLine((int)angeliconType + ": " + angeliconType);
+                }
+                int fallenAngeliconTypeInput = Convert.ToInt32(Console.ReadLine());
+                var fallenAngeliconTypeSelection = (FallenAngeliconType)fallenAngeliconTypeInput;
+
+                character = new FallenAngelicon(fallenAngeliconTypeSelection);
                 break;
             case RaceEnum.Human:
                 character = new Human();
@@ -87,66 +105,70 @@ class Program
         {
             switch(selectedProf) {
                 case ProficienciesEnum.Athletics:
-                    character.Athletics = 1;
+                    character.Athletics += 1;
                     break;
                 case ProficienciesEnum.Strength:
-                    character.Strength = 1;
+                    character.Strength += 1;
                     break;
                 case ProficienciesEnum.Intimidation:
-                    character.Intimidation = 1;
+                    character.Intimidation += 1;
                     break;
                 case ProficienciesEnum.Skulduggery:
-                    character.Skulduggery = 1;
+                    character.Skulduggery += 1;
                     break;
                 case ProficienciesEnum.Stealth:
-                    character.Stealth = 1;
+                    character.Stealth += 1;
                     break;
                 case ProficienciesEnum.Acrobatics:
-                    character.Acrobatics = 1;
+                    character.Acrobatics += 1;
                     break;
                 case ProficienciesEnum.Constitution:
-                    character.Constitution = 1;
+                    character.Constitution += 1;
                     break;
                 case ProficienciesEnum.Navigation:
-                    character.Navigation = 1;
+                    character.Navigation += 1;
                     break;
                 case ProficienciesEnum.Survival:
-                    character.Survival = 1;
+                    character.Survival += 1;
                     break;
                 case ProficienciesEnum.Lore:
-                    character.Lore = 1;
+                    character.Lore += 1;
                     break;
                 case ProficienciesEnum.Perception:
-                    character.Perception = 1;
+                    character.Perception += 1;
                     break;
                 case ProficienciesEnum.Anima:
-                    character.Anima = 1;
+                    character.Anima += 1;
                     break;
                 case ProficienciesEnum.Deduction:
-                    character.Deduction = 1;
+                    character.Deduction += 1;
                     break;
                 case ProficienciesEnum.Streetwise:
-                    character.Streetwise = 1;
+                    character.Streetwise += 1;
                     break;
                 case ProficienciesEnum.Barter:
-                    character.Barter = 1;
+                    character.Barter += 1;
                     break;
                 case ProficienciesEnum.Charm:
-                    character.Charm = 1;
+                    character.Charm += 1;
                     break;
                 case ProficienciesEnum.Rally:
-                    character.Rally = 1;
+                    character.Rally += 1;
                     break;
                 case ProficienciesEnum.Cool:
-                    character.Cool = 1;
+                    character.Cool += 1;
                     break;
                 case ProficienciesEnum.Diplomacy:
-                    character.Cool = 1;
+                    character.Cool += 1;
                     break;
                 default:
                     break;
             }
         }
+
+        // todo: roll for XP
+
+        // todo: pick vocational skills
 
         Console.WriteLine("Input Character Name:");
         character.Name = Console.ReadLine();

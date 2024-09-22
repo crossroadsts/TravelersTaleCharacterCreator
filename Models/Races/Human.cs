@@ -24,5 +24,8 @@ public class Human : BaseCharacter
             ProficienciesEnum.Anima,
             ProficienciesEnum.Skulduggery,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 8 + this.Vigor;
     }
 }

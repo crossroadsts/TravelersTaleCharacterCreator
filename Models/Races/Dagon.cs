@@ -25,5 +25,8 @@ public class Dagon : BaseCharacter
             ProficienciesEnum.Rally,
             ProficienciesEnum.Perception,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 10 + this.Vigor;
     }
 }

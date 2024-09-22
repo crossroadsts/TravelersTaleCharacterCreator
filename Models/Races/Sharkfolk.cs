@@ -46,6 +46,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Bull:
                 this.Power = 3;
@@ -53,6 +54,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Tiger:
                 this.Power = 3;
@@ -60,6 +62,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Mako:
                 this.Power = 2;
@@ -67,6 +70,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 2;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Thresher:
                 this.Power = 2;
@@ -74,6 +78,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 2;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Whale:
                 this.Power = 2;
@@ -81,6 +86,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 2;
                 this.Wit = 3;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Hammerhead:
                 this.Power = 3;
@@ -88,6 +94,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Sawtooth:
                 this.Power = 2;
@@ -95,6 +102,7 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 2;
                 this.Wit = 1;
                 this.Presence = 2;
+                this.InitializeProficienyStats();
                 break;
             case SharkType.Goblin:
                 this.Power = 2;
@@ -102,6 +110,9 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 2;
                 this.Wit = 1;
                 this.Presence = 3;
+                this.InitializeProficienyStats();
+                // Nightmare of the Deep
+                this.Intimidation += 1;
                 break;
             case SharkType.Megalodon:
                 this.Power = 3;
@@ -109,9 +120,12 @@ public class Sharkfolk : BaseCharacter
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 3;
+                this.InitializeProficienyStats();
                 break;
             default:
                 break;
         }
+
+        this.Vitality = 10 + this.Vigor;
     }
 }

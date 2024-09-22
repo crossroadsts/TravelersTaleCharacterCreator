@@ -24,5 +24,8 @@ public class Nitromech : BaseCharacter
             ProficienciesEnum.Skulduggery,
             ProficienciesEnum.Acrobatics,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 8 + this.Vigor;
     }
 }

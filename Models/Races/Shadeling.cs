@@ -24,5 +24,8 @@ public class Shadeling : BaseCharacter
             ProficienciesEnum.Perception,
             ProficienciesEnum.Lore,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 6 + this.Vigor;
     }
 }

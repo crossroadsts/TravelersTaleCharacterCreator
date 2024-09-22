@@ -24,5 +24,8 @@ public class Vereni : BaseCharacter
             ProficienciesEnum.Streetwise,
             ProficienciesEnum.Barter,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 6 + this.Vigor;
     }
 }

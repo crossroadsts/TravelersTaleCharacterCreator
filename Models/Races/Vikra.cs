@@ -25,5 +25,8 @@ public class Vikra : BaseCharacter
             ProficienciesEnum.Anima,
             ProficienciesEnum.Cool,
         };
+
+        this.InitializeProficienyStats();
+        this.Vitality = 8 + this.Vigor;
     }
 }
