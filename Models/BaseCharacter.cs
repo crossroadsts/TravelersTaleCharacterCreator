@@ -1,21 +1,47 @@
 namespace TravelersTaleCharacterCreator;
 
+
 public class BaseCharacter
 {
     public string Name;
+    public int SkillXP;
+    public BaseDiscipline Discipline;
+
+    const int VocationalBaseValue = 2;
     
-    // Core Stats
+    #region Core Stats
     public int Power;
     public int Speed;
     public int Vigor;
     public int Wit;
     public int Presence;
+    #endregion
 
     // Other Stats
     public string HealthDie;
     public int? Movement = null;
     public List<ProficienciesEnum> PossibleProficiencies;
     public int Vitality = 0;
+
+    #region Vocational Skills
+    public int Farming = VocationalBaseValue;
+    public int Science = VocationalBaseValue;
+    public int Cooking = VocationalBaseValue;
+    public int Medicine = VocationalBaseValue;
+    public int Mechanics = VocationalBaseValue;
+    public int Technology = VocationalBaseValue;
+    public int Carpentry = VocationalBaseValue;
+    public int Smithing = VocationalBaseValue;
+    public int Mounting = VocationalBaseValue;
+    public int Fishing = VocationalBaseValue;
+    public int Alchemy = VocationalBaseValue;
+    public int Weaving = VocationalBaseValue;
+    public int Leatherworking = VocationalBaseValue;
+    public int Music = VocationalBaseValue;
+    public int Art = VocationalBaseValue;
+    public int Botany = VocationalBaseValue;
+
+    #endregion
     
     #region Proficiencies
 
