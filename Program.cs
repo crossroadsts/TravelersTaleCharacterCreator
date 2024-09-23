@@ -397,6 +397,8 @@ class Program
 
         // todo: anima?
 
+        // todo: wren
+
         Console.WriteLine("Input Character Name:");
         character.Name = Console.ReadLine();
 
