@@ -1,5 +1,17 @@
 ﻿namespace TravelersTaleCharacterCreator;
 
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Fields;
+using MigraDoc.Rendering;
+using PdfSharp.Drawing;
+using PdfSharp.Fonts;
+using PdfSharp.Pdf;
+using PdfSharp.Pdf.AcroForms;
+using PdfSharp.Pdf.Content;
+using PdfSharp.Pdf.IO;
+using PdfSharp.Quality;
+using PdfSharp.Snippets.Font;
+
 class Program
 {
     static void Main(string[] args)
@@ -299,7 +311,104 @@ class Program
             default:
                 break;
         }
-        // todo, pick discipline's type and profs
+
+        int disciplineProf1 = 0;
+        int disciplineProf2 = 0;
+        int disciplineProf3 = 0;
+
+        bool disciplineProfCheckFailed = true;
+        while(disciplineProfCheckFailed) {
+            Console.WriteLine("Select 3 Proficiencies (press enter after each):");
+            int profNum = 1;
+            foreach (var prof in character.PossibleProficiencies)
+            {
+                Console.WriteLine(profNum + ": " + prof);
+                profNum++;
+            }
+
+            disciplineProf1 = Convert.ToInt32(Console.ReadLine());
+            disciplineProf2 = Convert.ToInt32(Console.ReadLine());
+            disciplineProf3 = Convert.ToInt32(Console.ReadLine());
+
+            HashSet<int> profs = new(){disciplineProf1, disciplineProf2, disciplineProf3};
+            disciplineProfCheckFailed = profs.Count != 3;
+
+            if (disciplineProfCheckFailed) {
+                Console.WriteLine("\nYou can only pick each Proficiency one time.");
+            }
+        }
+
+        List<ProficienciesEnum> selectedDisciplineProficiencies = new()
+        {
+            character.Discipline.PossibleProficiencies[disciplineProf1-1],
+            character.Discipline.PossibleProficiencies[disciplineProf2-1],
+            character.Discipline.PossibleProficiencies[disciplineProf3-1],
+        };
+
+        foreach (var selectedProf in selectedDisciplineProficiencies)
+        {
+            switch(selectedProf) {
+                case ProficienciesEnum.Athletics:
+                    character.Athletics += 1;
+                    break;
+                case ProficienciesEnum.Strength:
+                    character.Strength += 1;
+                    break;
+                case ProficienciesEnum.Intimidation:
+                    character.Intimidation += 1;
+                    break;
+                case ProficienciesEnum.Skulduggery:
+                    character.Skulduggery += 1;
+                    break;
+                case ProficienciesEnum.Stealth:
+                    character.Stealth += 1;
+                    break;
+                case ProficienciesEnum.Acrobatics:
+                    character.Acrobatics += 1;
+                    break;
+                case ProficienciesEnum.Constitution:
+                    character.Constitution += 1;
+                    break;
+                case ProficienciesEnum.Navigation:
+                    character.Navigation += 1;
+                    break;
+                case ProficienciesEnum.Survival:
+                    character.Survival += 1;
+                    break;
+                case ProficienciesEnum.Lore:
+                    character.Lore += 1;
+                    break;
+                case ProficienciesEnum.Perception:
+                    character.Perception += 1;
+                    break;
+                case ProficienciesEnum.Anima:
+                    character.Anima += 1;
+                    break;
+                case ProficienciesEnum.Deduction:
+                    character.Deduction += 1;
+                    break;
+                case ProficienciesEnum.Streetwise:
+                    character.Streetwise += 1;
+                    break;
+                case ProficienciesEnum.Barter:
+                    character.Barter += 1;
+                    break;
+                case ProficienciesEnum.Charm:
+                    character.Charm += 1;
+                    break;
+                case ProficienciesEnum.Rally:
+                    character.Rally += 1;
+                    break;
+                case ProficienciesEnum.Cool:
+                    character.Cool += 1;
+                    break;
+                case ProficienciesEnum.Diplomacy:
+                    character.Cool += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
 
         #endregion
 
@@ -402,6 +511,8 @@ class Program
         Console.WriteLine("Input Character Name:");
         character.Name = Console.ReadLine();
 
+        //GeneratePDF(character);
+
         Console.WriteLine("Done.");
     }
 
@@ -417,4 +528,60 @@ class Program
 
         return sum *= 20;
     }
+
+    static void GeneratePDF(BaseCharacter character) 
+    {
+        File.Copy(Environment.CurrentDirectory + "/resources/TTCharacterSheet2.pdf", Environment.CurrentDirectory + "/output/test_output.pdf", true);
+        
+        PdfDocument PDFDoc = PdfReader.Open(Environment.CurrentDirectory + "/output/test_output.pdf", PdfDocumentOpenMode.Modify );
+
+        using (PDFDoc)
+        {
+            if (PDFDoc.AcroForm.Elements.ContainsKey("/NeedAppearances") == false) PDFDoc.AcroForm.Elements.Add("/NeedAppearances", new PdfBoolean(true)); else PDFDoc.AcroForm.Elements["/NeedAppearances"] = new PdfBoolean(true);
+
+            #region Page 1
+            PdfTextField currentField = (PdfTextField)PDFDoc.AcroForm.Fields["character_name"];
+            currentField.Value = new PdfString(character.Name);
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["power"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Power));
+
+            #endregion
+
+            // todo, generate file name and save somewhere better
+            PDFDoc.Save(Environment.CurrentDirectory + "/output/test_output.pdf");
+        }
+    }
+
+    public static string ConvertIntToDiceString(int val)
+    {
+        switch(val)
+        {
+            case 0:
+                return "1d4*";
+            case 1:
+                return "1d4";
+            case 2:
+                return "2d4";
+            case 3:
+                return "1d4+1d6";
+            case 4:
+                return "2d6";
+            case 5:
+                return "1d6+1d8";
+            case 6:
+                return "2d8";
+            case 7:
+                return "1d8+1d10";
+            case 8:
+                return "2d10";
+            case 9:
+                return "1d10+1d12";
+            case 10:
+                return "2d12";
+            default:
+                return "bad dice val";
+        }
+    }
+
 }
