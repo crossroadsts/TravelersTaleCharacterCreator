@@ -26,6 +26,6 @@ public class Crystalline : BaseCharacter
         };
 
         this.InitializeProficienyStats();
-        this.Vitality = 12 + this.Vigor;
+        this.Vitality = 12 + (this.Vigor / 2);
     }
 }

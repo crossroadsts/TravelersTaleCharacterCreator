@@ -26,6 +26,6 @@ public class Human : BaseCharacter
         };
 
         this.InitializeProficienyStats();
-        this.Vitality = 8 + this.Vigor;
+        this.Vitality = 8 + (this.Vigor / 2);
     }
 }

@@ -126,6 +126,6 @@ public class Sharkfolk : BaseCharacter
                 break;
         }
 
-        this.Vitality = 10 + this.Vigor;
+        this.Vitality = 10 + (this.Vigor / 2);
     }
 }

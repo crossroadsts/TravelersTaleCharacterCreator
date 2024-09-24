@@ -6,6 +6,7 @@ public class BaseCharacter
     public string Name;
     public int SkillXP;
     public BaseDiscipline Discipline;
+    public BaseWren Wren;
 
     const int VocationalBaseValue = 2;
     
@@ -20,8 +21,10 @@ public class BaseCharacter
     // Other Stats
     public string HealthDie;
     public int? Movement = null;
+    public int AnimaStat = 0;
     public List<ProficienciesEnum> PossibleProficiencies;
     public int Vitality = 0;
+    public List<string> RaceAbilities;
 
     #region Vocational Skills
     public int Farming = VocationalBaseValue;

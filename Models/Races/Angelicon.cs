@@ -73,6 +73,6 @@ public class Angelicon : BaseCharacter
         }
 
         this.InitializeProficienyStats();
-        this.Vitality = 6 + this.Vigor;
+        this.Vitality = 6 + (this.Vigor / 2);
     }
 }
