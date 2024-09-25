@@ -21,7 +21,7 @@ public class Angelicon : BaseCharacter
         // this.Presence = 2;
 
         this.HealthDie = "1d6";
-        this.Movement = null;
+        this.Movement = 30;
 
         this.AngeliconType = AngeliconType;
 

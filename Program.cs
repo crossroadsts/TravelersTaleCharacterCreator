@@ -512,45 +512,43 @@ class Program
 
         //todo: weapon
 
-        //todo: shield
+        //todo: shield - not now
 
         //todo: armor
         
         #region Wren
-        Console.WriteLine("Select a Wren:");
-        foreach (var wren in Enum.GetValues(typeof(WrensEnum)))
-        {
-            Console.WriteLine((int)wren + ": " + wren);
-        }
-        int wrenInput = Convert.ToInt32(Console.ReadLine());
-        var wrenSelection = (WrensEnum)wrenInput;
+        // Console.WriteLine("Select a Wren:");
+        // foreach (var wren in Enum.GetValues(typeof(WrensEnum)))
+        // {
+        //     Console.WriteLine((int)wren + ": " + wren);
+        // }
+        // int wrenInput = Convert.ToInt32(Console.ReadLine());
+        // var wrenSelection = (WrensEnum)wrenInput;
 
-        switch(wrenSelection) {
-            case WrensEnum.Evoker:
-                character.Wren = new Evoker();
-                break;
-            case WrensEnum.Conjuror:
-                character.Wren = new Conjuror();
-                break;
-            case WrensEnum.Enchanter:
-                character.Wren = new Enchanter();
-                break;
-            case WrensEnum.Transmutation:
-                character.Wren = new Transmutation();
-                break;
-            case WrensEnum.Restoration:
-                character.Wren = new Restoration();
-                break;
-            case WrensEnum.Divination:
-                character.Wren = new Divination();
-                break;
-            default:
-                break;
-        }
+        // switch(wrenSelection) {
+        //     case WrensEnum.Evoker:
+        //         character.Wren = new Evoker();
+        //         break;
+        //     case WrensEnum.Conjuror:
+        //         character.Wren = new Conjuror();
+        //         break;
+        //     case WrensEnum.Enchanter:
+        //         character.Wren = new Enchanter();
+        //         break;
+        //     case WrensEnum.Transmutation:
+        //         character.Wren = new Transmutation();
+        //         break;
+        //     case WrensEnum.Restoration:
+        //         character.Wren = new Restoration();
+        //         break;
+        //     case WrensEnum.Divination:
+        //         character.Wren = new Divination();
+        //         break;
+        //     default:
+        //         break;
+        // }
         // todo: finish wren
         #endregion
-
-        //todo: melee techniques
 
         Console.WriteLine("Input Character Name:");
         character.Name = Console.ReadLine();

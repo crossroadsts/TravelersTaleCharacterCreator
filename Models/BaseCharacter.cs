@@ -20,11 +20,21 @@ public class BaseCharacter
 
     // Other Stats
     public string HealthDie;
-    public int? Movement = null;
+    public int Movement = 0;
+    public int DefenseRating = 0;
     public int AnimaStat = 0;
     public List<ProficienciesEnum> PossibleProficiencies;
     public int Vitality = 0;
     public List<string> RaceAbilities;
+
+    #region Battle Skills
+    public int Block = 0;
+    public int Dodge = 0;
+    public int Cleave = 0;
+    public int Grapple = 0;
+    public int Disarm = 0;
+    public int Shove = 0;
+    #endregion
 
     #region Vocational Skills
     public int Farming = VocationalBaseValue;

@@ -21,7 +21,7 @@ public class FallenAngelicon : BaseCharacter
         this.Presence = 2;
 
         this.HealthDie = "1d6";
-        this.Movement = null;
+        this.Movement = 30;
 
         this.PossibleProficiencies = new() 
         {
