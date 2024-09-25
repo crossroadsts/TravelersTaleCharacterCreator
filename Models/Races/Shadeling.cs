@@ -25,7 +25,10 @@ public class Shadeling : BaseCharacter
             ProficienciesEnum.Lore,
         };
 
+        this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-        this.Vitality = 6 + (this.Vigor / 2);
+        
+        double halfVigor = this.Vigor / 2;
+        this.Vitality = 6 + (int)Math.Round(halfVigor);
     }
 }

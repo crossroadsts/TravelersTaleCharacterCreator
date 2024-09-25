@@ -25,7 +25,10 @@ public class Crystalline : BaseCharacter
             ProficienciesEnum.Deduction,
         };
 
+        this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-        this.Vitality = 12 + (this.Vigor / 2);
+
+        double halfVigor = this.Vigor / 2;
+        this.Vitality = 12 + (int)Math.Round(halfVigor);
     }
 }

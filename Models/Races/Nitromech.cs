@@ -25,7 +25,10 @@ public class Nitromech : BaseCharacter
             ProficienciesEnum.Acrobatics,
         };
 
+        this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-        this.Vitality = 8 + (this.Vigor / 2);
+        
+        double halfVigor = this.Vigor / 2;
+        this.Vitality = 8 + (int)Math.Round(halfVigor);
     }
 }

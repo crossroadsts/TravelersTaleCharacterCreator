@@ -7,6 +7,7 @@ public class BaseCharacter
     public int SkillXP;
     public BaseDiscipline Discipline;
     public BaseWren Wren;
+    public BaseArmor Armor = null;
 
     const int VocationalBaseValue = 2;
     
@@ -21,7 +22,6 @@ public class BaseCharacter
     // Other Stats
     public string HealthDie;
     public int Movement = 0;
-    public int DefenseRating = 0;
     public int AnimaStat = 0;
     public List<ProficienciesEnum> PossibleProficiencies;
     public int Vitality = 0;
@@ -30,10 +30,25 @@ public class BaseCharacter
     #region Battle Skills
     public int Block = 0;
     public int Dodge = 0;
-    public int Cleave = 0;
+    public int CleavePower = 0;
+    public int CleaveSpeed = 0;
     public int Grapple = 0;
-    public int Disarm = 0;
+    public int DisarmPower = 0;
+    public int DisarmSpeed = 0;
     public int Shove = 0;
+
+    public void InitializeBattleSkills() 
+    {
+        // Power
+        this.Block = this.Vigor;
+        this.Dodge = this.Speed;
+        this.CleavePower = this.Power;
+        this.CleaveSpeed = this.Speed;
+        this.Grapple = this.Power;
+        this.DisarmPower = this.Power;
+        this.DisarmSpeed = this.Speed;
+        this.Shove = this.Power;
+    }
     #endregion
 
     #region Vocational Skills
