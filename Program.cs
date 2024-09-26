@@ -505,18 +505,8 @@ class Program
         Console.WriteLine("Remaining XP for your Skill XP Pool: " + character.SkillXP + "\n");
         #endregion
         Console.WriteLine("\n-------------------------------\n");
-        #region Anima
-        Console.WriteLine("Rolling for Anima...");
-        character.AnimaStat = RollForAnima();
-        Console.WriteLine("Your Anima is: " + character.AnimaStat + "\n");
-        #endregion
-        Console.WriteLine("\n-------------------------------\n");
-        //todo: weapon
-
-        //todo: shield - not now
-
         #region Vitality
-
+        Console.WriteLine("Calculating Vitality...");
         int healthDie = character.HealthDie;
 
         switch(character.HealthDie) {
@@ -529,8 +519,19 @@ class Program
 
         double halfVigor = character.Vigor / 2;
         character.Vitality = healthDie + (int)Math.Round(halfVigor);
-
+        Console.WriteLine("Your Vitality is: " + character.Vitality + "\n");
         #endregion
+        Console.WriteLine("\n-------------------------------\n");
+        #region Anima
+        Console.WriteLine("Rolling for Anima...");
+        character.AnimaStat = RollForAnima();
+        Console.WriteLine("Your Anima is: " + character.AnimaStat + "\n");
+        #endregion
+        Console.WriteLine("\n-------------------------------\n");
+        
+        //todo: weapon
+
+        //todo: shield
 
         #region Armor
 
@@ -646,9 +647,11 @@ class Program
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vitality"];
             currentField.Value = new PdfString(character.Vitality.ToString());
 
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["defense_rating"];
             if (character.Armor != null) {
-                currentField = (PdfTextField)PDFDoc.AcroForm.Fields["defense_rating"];
                 currentField.Value = new PdfString(character.Armor.DefenseRating.ToString());
+            } else {
+                currentField.Value = new PdfString(0.ToString());
             }
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["movement"];
