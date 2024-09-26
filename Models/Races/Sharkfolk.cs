@@ -23,7 +23,7 @@ public class Sharkfolk : BaseCharacter
     {
         this.SharkType = SharkType;
         
-        this.HealthDie = "1d10";
+        this.HealthDie = 10;
         this.Movement = 30;
 
         this.PossibleProficiencies = new() 
@@ -135,8 +135,5 @@ public class Sharkfolk : BaseCharacter
             default:
                 break;
         }
-
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 10 + (int)Math.Round(halfVigor);
     }
 }

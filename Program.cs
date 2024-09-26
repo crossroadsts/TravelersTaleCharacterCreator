@@ -515,6 +515,23 @@ class Program
 
         //todo: shield - not now
 
+        #region Vitality
+
+        int healthDie = character.HealthDie;
+
+        switch(character.HealthDie) {
+            case 12:
+                break;
+            default:
+                healthDie += 2;
+                break;
+        }
+
+        double halfVigor = character.Vigor / 2;
+        character.Vitality = healthDie + (int)Math.Round(halfVigor);
+
+        #endregion
+
         #region Armor
 
         var light = new LightArmor();
@@ -621,7 +638,7 @@ class Program
             currentField.Value = new PdfString(character.Name);
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vit_die"];
-            currentField.Value = new PdfString(character.HealthDie);
+            currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Discipline.FrontlineFighter));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["anima"];
             currentField.Value = new PdfString(character.AnimaStat.ToString());
@@ -819,6 +836,17 @@ class Program
         }
     }
 
+    public static string ConvertVitToDiceString(int vit, bool FrontlineFighter = false)
+    {
+        if (!FrontlineFighter) return "1d" + vit;
+
+        switch(vit) {
+            case 12:
+                return "1d" + vit + "+1";
+            default:
+                return "1d" + (vit + 2);
+        }
+    }
     static int RollForXP() 
     {
         Random rnd = new Random();

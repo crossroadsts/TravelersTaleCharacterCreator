@@ -10,7 +10,7 @@ public class Shadeling : BaseCharacter
         this.Wit = 2;
         this.Presence = 3;
 
-        this.HealthDie = "1d6";
+        this.HealthDie = 6;
         this.Movement = 35;
 
         this.PossibleProficiencies = new() 
@@ -27,8 +27,5 @@ public class Shadeling : BaseCharacter
 
         this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-        
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 6 + (int)Math.Round(halfVigor);
     }
 }

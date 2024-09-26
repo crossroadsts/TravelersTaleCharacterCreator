@@ -15,5 +15,7 @@ public class MysticPugalist : BaseDiscipline
             ProficienciesEnum.Intimidation,
             ProficienciesEnum.Deduction,
         };
+
+        this.FrontlineFighter = true;
     }
 }

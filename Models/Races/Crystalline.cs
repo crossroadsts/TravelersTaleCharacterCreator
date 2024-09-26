@@ -10,7 +10,7 @@ public class Crystalline : BaseCharacter
         this.Wit = 3;
         this.Presence = 0;
 
-        this.HealthDie = "1d12";
+        this.HealthDie = 12;
         this.Movement = 30;
 
         this.PossibleProficiencies = new() 
@@ -27,8 +27,5 @@ public class Crystalline : BaseCharacter
 
         this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 12 + (int)Math.Round(halfVigor);
     }
 }

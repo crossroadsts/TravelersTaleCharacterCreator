@@ -20,7 +20,7 @@ public class BaseCharacter
     #endregion
 
     // Other Stats
-    public string HealthDie;
+    public int HealthDie = 0;
     public int Movement = 0;
     public int AnimaStat = 0;
     public List<ProficienciesEnum> PossibleProficiencies;

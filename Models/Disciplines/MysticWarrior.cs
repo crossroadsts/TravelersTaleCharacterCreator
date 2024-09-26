@@ -16,5 +16,7 @@ public class MysticWarrior : BaseDiscipline
             ProficienciesEnum.Strength,
             ProficienciesEnum.Survival,
         };
+
+        this.FrontlineFighter = true;
     }
 }

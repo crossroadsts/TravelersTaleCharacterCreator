@@ -20,7 +20,7 @@ public class Angelicon : BaseCharacter
         // this.Wit = 1;
         // this.Presence = 2;
 
-        this.HealthDie = "1d6";
+        this.HealthDie = 6;
         this.Movement = 30;
 
         this.AngeliconType = AngeliconType;
@@ -74,8 +74,5 @@ public class Angelicon : BaseCharacter
 
         this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 6 + (int)Math.Round(halfVigor);
     }
 }

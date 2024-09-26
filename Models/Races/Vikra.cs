@@ -10,7 +10,7 @@ public class Vikra : BaseCharacter
         this.Wit = 2;
         this.Presence = 1;
 
-        this.HealthDie = "1d8";
+        this.HealthDie = 8;
         this.Movement = 35;
 
         this.PossibleProficiencies = new() 
@@ -28,8 +28,5 @@ public class Vikra : BaseCharacter
 
         this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-        
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 8 + (int)Math.Round(halfVigor);
     }
 }

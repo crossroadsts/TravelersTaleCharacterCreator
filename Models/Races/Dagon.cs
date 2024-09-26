@@ -10,7 +10,7 @@ public class Dagon : BaseCharacter
         this.Wit = 0;
         this.Presence = 3;
 
-        this.HealthDie = "1d10";
+        this.HealthDie = 10;
         this.Movement = 30;
 
         this.PossibleProficiencies = new() 
@@ -28,8 +28,5 @@ public class Dagon : BaseCharacter
 
         this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 10 + (int)Math.Round(halfVigor);
     }
 }

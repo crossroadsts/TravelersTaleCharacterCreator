@@ -20,7 +20,7 @@ public class FallenAngelicon : BaseCharacter
         this.Wit = 1;
         this.Presence = 2;
 
-        this.HealthDie = "1d6";
+        this.HealthDie = 6;
         this.Movement = 30;
 
         this.PossibleProficiencies = new() 
@@ -71,8 +71,5 @@ public class FallenAngelicon : BaseCharacter
 
         this.InitializeBattleSkills();
         this.InitializeProficienyStats();
-
-        double halfVigor = this.Vigor / 2;
-        this.Vitality = 6 + (int)Math.Round(halfVigor);
     }
 }
