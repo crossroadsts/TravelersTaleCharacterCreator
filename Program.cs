@@ -321,7 +321,7 @@ class Program
         while(disciplineProfCheckFailed) {
             Console.WriteLine("Select 3 Proficiencies (press enter after each):");
             int profNum = 1;
-            foreach (var prof in character.PossibleProficiencies)
+            foreach (var prof in character.Discipline.PossibleProficiencies)
             {
                 Console.WriteLine(profNum + ": " + prof);
                 profNum++;
