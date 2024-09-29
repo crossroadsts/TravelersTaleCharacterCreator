@@ -50,6 +50,9 @@ class Program
             case RaceEnum.Dagon:
                 character = new Dagon();
                 break;
+            case RaceEnum.Desamir:
+                character = new Desamir();
+                break;
             case RaceEnum.FallenAngelicon:
                 Console.WriteLine("Select a Fallen Angelicon Type:");
                 
@@ -568,7 +571,7 @@ class Program
                     break;
             }
             Console.WriteLine("\n-------------------------------\n");
-        };
+        }
 
         #endregion
         
