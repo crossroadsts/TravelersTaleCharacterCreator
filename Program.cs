@@ -333,6 +333,9 @@ class Program
             case DisciplinesEnum.MysticRanger:
                 character.Discipline = new MysticRanger();
                 break;
+            case DisciplinesEnum.MysticVigilante:
+                character.Discipline = new MysticVigilante();
+                break;
             default:
                 break;
         }

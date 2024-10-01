@@ -7,4 +7,5 @@ public enum DisciplinesEnum
     MysticTyrant = 3,
     MysticWarrior = 4,
     MysticRanger = 5,
+    MysticVigilante = 6,
 }
