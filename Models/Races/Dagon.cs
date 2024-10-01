@@ -26,7 +26,8 @@ public class Dagon : BaseCharacter
             ProficienciesEnum.Perception,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Dagon";
+
         this.InitializeProficienyStats();
     }
 }

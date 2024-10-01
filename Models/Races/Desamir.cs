@@ -25,7 +25,8 @@ public class Desamir : BaseCharacter
             ProficienciesEnum.Constitution,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Desamir";
+
         this.InitializeProficienyStats();
     }
 }

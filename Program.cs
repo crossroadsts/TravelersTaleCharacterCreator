@@ -284,6 +284,24 @@ class Program
                 case VocationalSkillsEnum.Botany:
                     character.Botany += 1;
                     break;
+                case VocationalSkillsEnum.Hunting:
+                    character.Hunting += 1;
+                    break;
+                case VocationalSkillsEnum.Skinning:
+                    character.Skinning += 1;
+                    break;
+                case VocationalSkillsEnum.Foraging:
+                    character.Foraging += 1;
+                    break;
+                case VocationalSkillsEnum.Taming:
+                    character.Taming += 1;
+                    break;
+                case VocationalSkillsEnum.Piloting:
+                    character.Piloting += 1;
+                    break;
+                case VocationalSkillsEnum.Sailing:
+                    character.Sailing += 1;
+                    break;
                 default:
                     break;
             }
@@ -311,6 +329,9 @@ class Program
                 break;
             case DisciplinesEnum.MysticWarrior:
                 character.Discipline = new MysticWarrior();
+                break;
+            case DisciplinesEnum.MysticRanger:
+                character.Discipline = new MysticRanger();
                 break;
             default:
                 break;
@@ -545,15 +566,15 @@ class Program
             Console.WriteLine("Choose Armor...");
 
             if (character.Speed >= light.StatReqValue) { 
-                Console.WriteLine("1: Light Armor - " + light.DefenseRating + "DR");
+                Console.WriteLine("1: Light Armor ~ " + light.DefenseRating + " D.R.");
             }
 
             if (character.Power >= medium.StatReqValue) {
-                Console.WriteLine("2: Medium Armor - " + medium.DefenseRating + "DR");
+                Console.WriteLine("2: Medium Armor ~ " + medium.DefenseRating + " D.R. and " + medium.DodgeModifier + " Dodge");
             }
 
             if (character.Power >= heavy.StatReqValue) {
-                Console.WriteLine("3: Heavy Armor - " + heavy.DefenseRating + "DR");
+                Console.WriteLine("3: Heavy Armor ~ " + heavy.DefenseRating + " D.R. and " + heavy.DodgeModifier + " Dodge");
             }
 
             int armorInput = Convert.ToInt32(Console.ReadLine());
@@ -563,9 +584,11 @@ class Program
                     break;
                 case 2:
                     character.Armor = new MediumArmor();
+                    character.Dodge += character.Armor.DodgeModifier;
                     break;
                 case 3:
                     character.Armor = new HeavyArmor();
+                    character.Dodge += character.Armor.DodgeModifier;
                     break;
                 default:
                     break;
@@ -637,9 +660,11 @@ class Program
         {
             if (PDFDoc.AcroForm.Elements.ContainsKey("/NeedAppearances") == false) PDFDoc.AcroForm.Elements.Add("/NeedAppearances", new PdfBoolean(true)); else PDFDoc.AcroForm.Elements["/NeedAppearances"] = new PdfBoolean(true);
 
-            #region Page 1
             PdfTextField currentField = (PdfTextField)PDFDoc.AcroForm.Fields["character_name"];
             currentField.Value = new PdfString(character.Name);
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["race"];
+            currentField.Value = new PdfString(character.Race);
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vit_die"];
             currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Discipline.FrontlineFighter));
@@ -734,29 +759,20 @@ class Program
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["diplomacy"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Diplomacy));
 
-            // Battle Skills
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["block"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Block));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["dodge"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Dodge));
 
-            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["cleave"];
-            currentField.Value = new PdfString(ConvertIntToDiceString(character.CleavePower) + "/" + ConvertIntToDiceString(character.CleaveSpeed));
-
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["grapple"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Grapple));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["disarm"];
-            currentField.Value = new PdfString(ConvertIntToDiceString(character.DisarmPower) + "/" + ConvertIntToDiceString(character.DisarmSpeed));
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Disarm));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["shove"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Shove));
-
-            // todo: weapon masteries
-            #endregion
-
-            #region Page 2
 
             // Vocational Skills
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["farming"];
@@ -804,15 +820,35 @@ class Program
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["botany"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Botany));
 
-            #endregion
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["hunting"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Hunting));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["skinning"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Skinning));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["foraging"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Foraging));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["taming"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Taming));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["piloting"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Piloting));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["sailing"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Sailing));
             
-            // todo, generate file name and save somewhere better
+            // todo, save somewhere better
             PDFDoc.Save(Environment.CurrentDirectory + outputFileName);
         }
     }
 
     public static string ConvertIntToDiceString(int val)
     {
+        if (val < 0) {
+            return val.ToString();
+        }
+        
         switch(val)
         {
             case 0:

@@ -18,4 +18,10 @@ public enum VocationalSkillsEnum
     Music = 14,
     Art = 15,
     Botany = 16,
+    Hunting = 17,
+    Skinning = 18,
+    Foraging = 19,
+    Taming = 20,
+    Piloting = 21,
+    Sailing = 22,
 }

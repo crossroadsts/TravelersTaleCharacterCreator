@@ -25,7 +25,8 @@ public class Shadeling : BaseCharacter
             ProficienciesEnum.Lore,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Shadeling";
+
         this.InitializeProficienyStats();
     }
 }

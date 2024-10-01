@@ -26,7 +26,8 @@ public class Vikra : BaseCharacter
             ProficienciesEnum.Cool,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Vikra";
+
         this.InitializeProficienyStats();
     }
 }

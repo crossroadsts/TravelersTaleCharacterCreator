@@ -25,7 +25,8 @@ public class Human : BaseCharacter
             ProficienciesEnum.Skulduggery,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Human";
+
         this.InitializeProficienyStats();
     }
 }

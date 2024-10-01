@@ -25,7 +25,8 @@ public class Vereni : BaseCharacter
             ProficienciesEnum.Barter,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Vereni";
+
         this.InitializeProficienyStats();
     }
 }

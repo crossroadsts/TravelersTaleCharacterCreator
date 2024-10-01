@@ -25,7 +25,8 @@ public class Crystalline : BaseCharacter
             ProficienciesEnum.Deduction,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Crystalline";
+
         this.InitializeProficienyStats();
     }
 }

@@ -25,7 +25,8 @@ public class Nitromech : BaseCharacter
             ProficienciesEnum.Acrobatics,
         };
 
-        this.InitializeBattleSkills();
+        this.Race = "Nitromech";
+
         this.InitializeProficienyStats();
     }
 }

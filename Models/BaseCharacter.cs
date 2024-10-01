@@ -4,6 +4,7 @@ namespace TravelersTaleCharacterCreator;
 public class BaseCharacter
 {
     public string Name;
+    public string Race;
     public int SkillXP;
     public BaseDiscipline Discipline;
     public BaseWren Wren;
@@ -27,30 +28,6 @@ public class BaseCharacter
     public int Vitality = 0;
     public List<string> RaceAbilities;
 
-    #region Battle Skills
-    public int Block = 0;
-    public int Dodge = 0;
-    public int CleavePower = 0;
-    public int CleaveSpeed = 0;
-    public int Grapple = 0;
-    public int DisarmPower = 0;
-    public int DisarmSpeed = 0;
-    public int Shove = 0;
-
-    public void InitializeBattleSkills() 
-    {
-        // Power
-        this.Block = this.Vigor;
-        this.Dodge = this.Speed;
-        this.CleavePower = this.Power;
-        this.CleaveSpeed = this.Speed;
-        this.Grapple = this.Power;
-        this.DisarmPower = this.Power;
-        this.DisarmSpeed = this.Speed;
-        this.Shove = this.Power;
-    }
-    #endregion
-
     #region Vocational Skills
     public int Farming = VocationalBaseValue;
     public int Science = VocationalBaseValue;
@@ -68,6 +45,12 @@ public class BaseCharacter
     public int Music = VocationalBaseValue;
     public int Art = VocationalBaseValue;
     public int Botany = VocationalBaseValue;
+    public int Hunting = VocationalBaseValue;
+    public int Skinning = VocationalBaseValue;
+    public int Foraging = VocationalBaseValue;
+    public int Taming = VocationalBaseValue;
+    public int Piloting = VocationalBaseValue;
+    public int Sailing = VocationalBaseValue;
 
     #endregion
     
@@ -76,16 +59,21 @@ public class BaseCharacter
     // Power
     public int Athletics = 0;
     public int Strength = 0;
-    public int Intimidation = 0;
+    public int Block = 0;
+    public int Grapple = 0;
+    public int Shove = 0;
     // Speed
     public int Skulduggery = 0;
     public int Stealth = 0;
     public int Acrobatics = 0;
+    public int Dodge = 0;
+    public int Disarm = 0;
     // Vigor
     public int Constitution = 0;
+    public int Intimidation = 0;
+    public int Survival = 0;
     // Wit
     public int Navigation = 0;
-    public int Survival = 0;
     public int Lore = 0;
     public int Perception = 0;
     public int Anima = 0;
@@ -103,19 +91,24 @@ public class BaseCharacter
         // Power
         this.Athletics = this.Power;
         this.Strength = this.Power;
-        this.Intimidation = this.Power;
+        this.Block = this.Power;
+        this.Grapple = this.Power;
+        this.Shove = this.Power;
 
         // Speed
         this.Skulduggery = this.Speed;
         this.Stealth = this.Speed;
         this.Acrobatics = this.Speed;
+        this.Dodge = this.Speed;
+        this.Disarm = this.Speed;
 
         // Vigor
         this.Constitution = this.Vigor;
+        this.Intimidation = this.Vigor;
+        this.Survival = this.Vigor;
 
         // Wit
         this.Navigation = this.Wit;
-        this.Survival = this.Wit;
         this.Lore = this.Wit;
         this.Perception = this.Wit;
         this.Anima = this.Wit;
