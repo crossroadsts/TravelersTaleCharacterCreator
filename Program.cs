@@ -653,6 +653,7 @@ class Program
 
         var dateString = DateTime.Now.ToString("M-d-yyyy");
 
+        Directory.CreateDirectory(Environment.CurrentDirectory + "/output");
         var outputFileName = "/output/" + strippedName + "_" + dateString + ".pdf";
         
         File.Copy(Environment.CurrentDirectory + "/resources/TTCharacterSheet2_Form.pdf", Environment.CurrentDirectory + outputFileName, true);
