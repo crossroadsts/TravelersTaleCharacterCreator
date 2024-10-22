@@ -1,17 +1,9 @@
 ﻿namespace TravelersTaleCharacterCreator;
 
 using System.Text.RegularExpressions;
-using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Fields;
-using MigraDoc.Rendering;
-using PdfSharp.Drawing;
-using PdfSharp.Fonts;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.AcroForms;
-using PdfSharp.Pdf.Content;
 using PdfSharp.Pdf.IO;
-using PdfSharp.Quality;
-using PdfSharp.Snippets.Font;
 
 class Program
 {
