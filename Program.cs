@@ -44,6 +44,18 @@ class Program
 
                 character = new Angelicon(angeliconTypeSelection);
                 break;
+            case RaceEnum.Calmara:
+                Console.WriteLine("Select a Calmara Type:");
+                
+                foreach (var calmaraType in Enum.GetValues(typeof(CalmaraType)))
+                {
+                    Console.WriteLine((int)calmaraType + ": " + calmaraType);
+                }
+                int calmaraTypeInput = Convert.ToInt32(Console.ReadLine());
+                var calmaraTypeSelection = (CalmaraType)calmaraTypeInput;
+
+                character = new Calmara(calmaraTypeSelection);
+                break;
             case RaceEnum.Crystalline:
                 character = new Crystalline();
                 break;
@@ -67,6 +79,18 @@ class Program
                 break;
             case RaceEnum.Human:
                 character = new Human();
+                break;
+            case RaceEnum.Jotunn:
+                Console.WriteLine("Select a Jotunn Type:");
+                
+                foreach (var jotunnType in Enum.GetValues(typeof(JotunnType)))
+                {
+                    Console.WriteLine((int)jotunnType + ": " + jotunnType);
+                }
+                int jotunnTypeInput = Convert.ToInt32(Console.ReadLine());
+                var jotunnTypeSelection = (JotunnType)jotunnTypeInput;
+
+                character = new Jotunn(jotunnTypeSelection);
                 break;
             case RaceEnum.Nitromech:
                 character = new Nitromech();
