@@ -342,23 +342,23 @@ class Program
         var disciplineSelection = (DisciplinesEnum)disciplineInput;
         
         switch(disciplineSelection) {
-            case DisciplinesEnum.MysticDeathKnight:
-                character.Discipline = new MysticDeathKnight();
+            case DisciplinesEnum.Necroblade:
+                character.Discipline = new Necroblade();
                 break;
-            case DisciplinesEnum.MysticPugalist:
-                character.Discipline = new MysticPugalist();
+            case DisciplinesEnum.Pugalist:
+                character.Discipline = new Pugalist();
                 break;
-            case DisciplinesEnum.MysticTyrant:
-                character.Discipline = new MysticTyrant();
+            case DisciplinesEnum.Tyrant:
+                character.Discipline = new Tyrant();
                 break;
-            case DisciplinesEnum.MysticWarrior:
-                character.Discipline = new MysticWarrior();
+            case DisciplinesEnum.Warrior:
+                character.Discipline = new Warrior();
                 break;
-            case DisciplinesEnum.MysticRanger:
-                character.Discipline = new MysticRanger();
+            case DisciplinesEnum.Ranger:
+                character.Discipline = new Ranger();
                 break;
-            case DisciplinesEnum.MysticVigilante:
-                character.Discipline = new MysticVigilante();
+            case DisciplinesEnum.Vigilante:
+                character.Discipline = new Vigilante();
                 break;
             default:
                 break;

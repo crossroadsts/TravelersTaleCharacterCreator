@@ -1,19 +1,20 @@
 namespace TravelersTaleCharacterCreator;
 
-public class MysticPugalist : BaseDiscipline
+public class Warrior : BaseDiscipline
 {
-    public MysticPugalist()
+    public Warrior()
     {
         this.PossibleProficiencies = new() 
         {
             ProficienciesEnum.Athletics,
-            ProficienciesEnum.Constitution,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Strength,
-            ProficienciesEnum.Perception,
             ProficienciesEnum.Acrobatics,
-            ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Deduction,
+            ProficienciesEnum.Constitution,
+            ProficienciesEnum.Rally,
+            ProficienciesEnum.Streetwise,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Perception,
+            ProficienciesEnum.Strength,
+            ProficienciesEnum.Survival,
         };
 
         this.FrontlineFighter = true;

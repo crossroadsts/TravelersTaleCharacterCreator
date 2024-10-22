@@ -1,19 +1,20 @@
 namespace TravelersTaleCharacterCreator;
 
-public class MysticRanger : BaseDiscipline
+public class Vigilante : BaseDiscipline
 {
-    public MysticRanger()
+    public Vigilante()
     {
         this.PossibleProficiencies = new() 
         {
-            ProficienciesEnum.Stealth,
             ProficienciesEnum.Acrobatics,
-            ProficienciesEnum.Survival,
-            ProficienciesEnum.Navigation,
+            ProficienciesEnum.Charm,
+            ProficienciesEnum.Skulduggery,
+            ProficienciesEnum.Streetwise,
+            ProficienciesEnum.Stealth,
             ProficienciesEnum.Perception,
+            ProficienciesEnum.Deduction,
             ProficienciesEnum.Barter,
             ProficienciesEnum.Cool,
-            ProficienciesEnum.Charm,
         };
     }
 }

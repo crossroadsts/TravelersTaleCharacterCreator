@@ -1,8 +1,8 @@
 namespace TravelersTaleCharacterCreator;
 
-public class MysticDeathKnight : BaseDiscipline
+public class Necroblade : BaseDiscipline
 {
-    public MysticDeathKnight()
+    public Necroblade()
     {
         this.PossibleProficiencies = new() 
         {

@@ -2,10 +2,10 @@ namespace TravelersTaleCharacterCreator;
 
 public enum DisciplinesEnum
 {
-    MysticDeathKnight = 1,
-    MysticPugalist = 2,
-    MysticTyrant = 3,
-    MysticWarrior = 4,
-    MysticRanger = 5,
-    MysticVigilante = 6,
+    Necroblade = 1,
+    Pugalist = 2,
+    Tyrant = 3,
+    Warrior = 4,
+    Ranger = 5,
+    Vigilante = 6,
 }

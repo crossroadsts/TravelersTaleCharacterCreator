@@ -1,8 +1,8 @@
 namespace TravelersTaleCharacterCreator;
 
-public class MysticTyrant : BaseDiscipline
+public class Tyrant : BaseDiscipline
 {
-    public MysticTyrant()
+    public Tyrant()
     {
         this.PossibleProficiencies = new() 
         {
