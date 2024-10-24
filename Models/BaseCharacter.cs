@@ -6,7 +6,8 @@ public class BaseCharacter
     public string Name;
     public string Race;
     public int SkillXP;
-    public BaseDiscipline Discipline;
+    // public BaseDiscipline Discipline;
+    public TraitsEnum Trait;
     public BaseWren Wren;
     public BaseArmor Armor = null;
 

@@ -114,109 +114,7 @@ class Program
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         #region Race Proficiencies
-        int prof1 = 0;
-        int prof2 = 0;
-        int prof3 = 0;
-        int prof4 = 0;
-        int prof5 = 0;
-
-        bool profCheckFailed = true;
-        while(profCheckFailed) {
-            Console.WriteLine("Select 5 Proficiencies (press enter after each):");
-            int profNum = 1;
-            foreach (var prof in character.PossibleProficiencies)
-            {
-                Console.WriteLine(profNum + ": " + prof);
-                profNum++;
-            }
-
-            prof1 = Convert.ToInt32(Console.ReadLine());
-            prof2 = Convert.ToInt32(Console.ReadLine());
-            prof3 = Convert.ToInt32(Console.ReadLine());
-            prof4 = Convert.ToInt32(Console.ReadLine());
-            prof5 = Convert.ToInt32(Console.ReadLine());
-
-            HashSet<int> profs = new(){prof1, prof2, prof3, prof4, prof5};
-            profCheckFailed = profs.Count != 5;
-
-            if (profCheckFailed) {
-                Console.WriteLine("\nYou can only pick each Proficiency one time.");
-            }
-        }
-
-        List<ProficienciesEnum> selectedProficiencies = new()
-        {
-            character.PossibleProficiencies[prof1-1],
-            character.PossibleProficiencies[prof2-1],
-            character.PossibleProficiencies[prof3-1],
-            character.PossibleProficiencies[prof4-1],
-            character.PossibleProficiencies[prof5-1]
-        };
-
-        foreach (var selectedProf in selectedProficiencies)
-        {
-            switch(selectedProf) {
-                case ProficienciesEnum.Athletics:
-                    character.Athletics += 1;
-                    break;
-                case ProficienciesEnum.Strength:
-                    character.Strength += 1;
-                    break;
-                case ProficienciesEnum.Intimidation:
-                    character.Intimidation += 1;
-                    break;
-                case ProficienciesEnum.Skulduggery:
-                    character.Skulduggery += 1;
-                    break;
-                case ProficienciesEnum.Stealth:
-                    character.Stealth += 1;
-                    break;
-                case ProficienciesEnum.Acrobatics:
-                    character.Acrobatics += 1;
-                    break;
-                case ProficienciesEnum.Constitution:
-                    character.Constitution += 1;
-                    break;
-                case ProficienciesEnum.Navigation:
-                    character.Navigation += 1;
-                    break;
-                case ProficienciesEnum.Survival:
-                    character.Survival += 1;
-                    break;
-                case ProficienciesEnum.Lore:
-                    character.Lore += 1;
-                    break;
-                case ProficienciesEnum.Perception:
-                    character.Perception += 1;
-                    break;
-                case ProficienciesEnum.Anima:
-                    character.Anima += 1;
-                    break;
-                case ProficienciesEnum.Deduction:
-                    character.Deduction += 1;
-                    break;
-                case ProficienciesEnum.Streetwise:
-                    character.Streetwise += 1;
-                    break;
-                case ProficienciesEnum.Barter:
-                    character.Barter += 1;
-                    break;
-                case ProficienciesEnum.Charm:
-                    character.Charm += 1;
-                    break;
-                case ProficienciesEnum.Rally:
-                    character.Rally += 1;
-                    break;
-                case ProficienciesEnum.Cool:
-                    character.Cool += 1;
-                    break;
-                case ProficienciesEnum.Diplomacy:
-                    character.Cool += 1;
-                    break;
-                default:
-                    break;
-            }
-        }
+        ProficiencySelection(character);
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         #region Vocational Skills
@@ -325,135 +223,167 @@ class Program
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         #region Discipline
-        Console.WriteLine("Select a Discipline:");
-        foreach (var discipline in Enum.GetValues(typeof(DisciplinesEnum)))
-        {
-            Console.WriteLine((int)discipline + ": " + discipline);
-        }
-        int disciplineInput = Convert.ToInt32(Console.ReadLine());
-        var disciplineSelection = (DisciplinesEnum)disciplineInput;
+        // Console.WriteLine("Select a Discipline:");
+        // foreach (var discipline in Enum.GetValues(typeof(DisciplinesEnum)))
+        // {
+        //     Console.WriteLine((int)discipline + ": " + discipline);
+        // }
+        // int disciplineInput = Convert.ToInt32(Console.ReadLine());
+        // var disciplineSelection = (DisciplinesEnum)disciplineInput;
         
-        switch(disciplineSelection) {
-            case DisciplinesEnum.Necroblade:
-                character.Discipline = new Necroblade();
+        // switch(disciplineSelection) {
+        //     case DisciplinesEnum.Necroblade:
+        //         character.Discipline = new Necroblade();
+        //         break;
+        //     case DisciplinesEnum.Pugalist:
+        //         character.Discipline = new Pugalist();
+        //         break;
+        //     case DisciplinesEnum.Tyrant:
+        //         character.Discipline = new Tyrant();
+        //         break;
+        //     case DisciplinesEnum.Warrior:
+        //         character.Discipline = new Warrior();
+        //         break;
+        //     case DisciplinesEnum.Ranger:
+        //         character.Discipline = new Ranger();
+        //         break;
+        //     case DisciplinesEnum.Vigilante:
+        //         character.Discipline = new Vigilante();
+        //         break;
+        //     default:
+        //         break;
+        // }
+
+        // int disciplineProf1 = 0;
+        // int disciplineProf2 = 0;
+        // int disciplineProf3 = 0;
+
+        // bool disciplineProfCheckFailed = true;
+        // while(disciplineProfCheckFailed) {
+        //     Console.WriteLine("Select 3 Proficiencies (press enter after each):");
+        //     int profNum = 1;
+        //     foreach (var prof in character.Discipline.PossibleProficiencies)
+        //     {
+        //         Console.WriteLine(profNum + ": " + prof);
+        //         profNum++;
+        //     }
+
+        //     disciplineProf1 = Convert.ToInt32(Console.ReadLine());
+        //     disciplineProf2 = Convert.ToInt32(Console.ReadLine());
+        //     disciplineProf3 = Convert.ToInt32(Console.ReadLine());
+
+        //     HashSet<int> profs = new(){disciplineProf1, disciplineProf2, disciplineProf3};
+        //     disciplineProfCheckFailed = profs.Count != 3;
+
+        //     if (disciplineProfCheckFailed) {
+        //         Console.WriteLine("\nYou can only pick each Proficiency one time.");
+        //     }
+        // }
+
+        // List<ProficienciesEnum> selectedDisciplineProficiencies = new()
+        // {
+        //     character.Discipline.PossibleProficiencies[disciplineProf1-1],
+        //     character.Discipline.PossibleProficiencies[disciplineProf2-1],
+        //     character.Discipline.PossibleProficiencies[disciplineProf3-1],
+        // };
+
+        // foreach (var selectedProf in selectedDisciplineProficiencies)
+        // {
+        //     switch(selectedProf) {
+        //         case ProficienciesEnum.Athletics:
+        //             character.Athletics += 1;
+        //             break;
+        //         case ProficienciesEnum.Strength:
+        //             character.Strength += 1;
+        //             break;
+        //         case ProficienciesEnum.Intimidation:
+        //             character.Intimidation += 1;
+        //             break;
+        //         case ProficienciesEnum.Skulduggery:
+        //             character.Skulduggery += 1;
+        //             break;
+        //         case ProficienciesEnum.Stealth:
+        //             character.Stealth += 1;
+        //             break;
+        //         case ProficienciesEnum.Acrobatics:
+        //             character.Acrobatics += 1;
+        //             break;
+        //         case ProficienciesEnum.Constitution:
+        //             character.Constitution += 1;
+        //             break;
+        //         case ProficienciesEnum.Navigation:
+        //             character.Navigation += 1;
+        //             break;
+        //         case ProficienciesEnum.Survival:
+        //             character.Survival += 1;
+        //             break;
+        //         case ProficienciesEnum.Lore:
+        //             character.Lore += 1;
+        //             break;
+        //         case ProficienciesEnum.Perception:
+        //             character.Perception += 1;
+        //             break;
+        //         case ProficienciesEnum.Anima:
+        //             character.Anima += 1;
+        //             break;
+        //         case ProficienciesEnum.Deduction:
+        //             character.Deduction += 1;
+        //             break;
+        //         case ProficienciesEnum.Streetwise:
+        //             character.Streetwise += 1;
+        //             break;
+        //         case ProficienciesEnum.Barter:
+        //             character.Barter += 1;
+        //             break;
+        //         case ProficienciesEnum.Charm:
+        //             character.Charm += 1;
+        //             break;
+        //         case ProficienciesEnum.Rally:
+        //             character.Rally += 1;
+        //             break;
+        //         case ProficienciesEnum.Cool:
+        //             character.Cool += 1;
+        //             break;
+        //         case ProficienciesEnum.Diplomacy:
+        //             character.Cool += 1;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
+
+        #endregion
+        Console.WriteLine("\n-------------------------------\n");
+        #region Trait
+        Console.WriteLine("Select a Trait:");
+        foreach (var trait in Enum.GetValues(typeof(TraitsEnum)))
+        {
+            Console.WriteLine((int)trait + ": " + trait);
+        }
+        int traitInput = Convert.ToInt32(Console.ReadLine());
+        var traitSelection = (TraitsEnum)traitInput;
+
+        switch(traitSelection) {
+            case TraitsEnum.Bullwark:
+                character.Trait = TraitsEnum.Bullwark;
                 break;
-            case DisciplinesEnum.Pugalist:
-                character.Discipline = new Pugalist();
+            case TraitsEnum.Sage:
+                character.Trait = TraitsEnum.Sage;
                 break;
-            case DisciplinesEnum.Tyrant:
-                character.Discipline = new Tyrant();
+            case TraitsEnum.Jack:
+                character.Trait = TraitsEnum.Jack;
+                ProficiencySelection(character);
                 break;
-            case DisciplinesEnum.Warrior:
-                character.Discipline = new Warrior();
+            case TraitsEnum.Mobile:
+                character.Trait = TraitsEnum.Mobile;
+                character.Movement += 10;
                 break;
-            case DisciplinesEnum.Ranger:
-                character.Discipline = new Ranger();
-                break;
-            case DisciplinesEnum.Vigilante:
-                character.Discipline = new Vigilante();
+            case TraitsEnum.Prodigy:
+                character.Trait = TraitsEnum.Prodigy;
                 break;
             default:
                 break;
         }
-
-        int disciplineProf1 = 0;
-        int disciplineProf2 = 0;
-        int disciplineProf3 = 0;
-
-        bool disciplineProfCheckFailed = true;
-        while(disciplineProfCheckFailed) {
-            Console.WriteLine("Select 3 Proficiencies (press enter after each):");
-            int profNum = 1;
-            foreach (var prof in character.Discipline.PossibleProficiencies)
-            {
-                Console.WriteLine(profNum + ": " + prof);
-                profNum++;
-            }
-
-            disciplineProf1 = Convert.ToInt32(Console.ReadLine());
-            disciplineProf2 = Convert.ToInt32(Console.ReadLine());
-            disciplineProf3 = Convert.ToInt32(Console.ReadLine());
-
-            HashSet<int> profs = new(){disciplineProf1, disciplineProf2, disciplineProf3};
-            disciplineProfCheckFailed = profs.Count != 3;
-
-            if (disciplineProfCheckFailed) {
-                Console.WriteLine("\nYou can only pick each Proficiency one time.");
-            }
-        }
-
-        List<ProficienciesEnum> selectedDisciplineProficiencies = new()
-        {
-            character.Discipline.PossibleProficiencies[disciplineProf1-1],
-            character.Discipline.PossibleProficiencies[disciplineProf2-1],
-            character.Discipline.PossibleProficiencies[disciplineProf3-1],
-        };
-
-        foreach (var selectedProf in selectedDisciplineProficiencies)
-        {
-            switch(selectedProf) {
-                case ProficienciesEnum.Athletics:
-                    character.Athletics += 1;
-                    break;
-                case ProficienciesEnum.Strength:
-                    character.Strength += 1;
-                    break;
-                case ProficienciesEnum.Intimidation:
-                    character.Intimidation += 1;
-                    break;
-                case ProficienciesEnum.Skulduggery:
-                    character.Skulduggery += 1;
-                    break;
-                case ProficienciesEnum.Stealth:
-                    character.Stealth += 1;
-                    break;
-                case ProficienciesEnum.Acrobatics:
-                    character.Acrobatics += 1;
-                    break;
-                case ProficienciesEnum.Constitution:
-                    character.Constitution += 1;
-                    break;
-                case ProficienciesEnum.Navigation:
-                    character.Navigation += 1;
-                    break;
-                case ProficienciesEnum.Survival:
-                    character.Survival += 1;
-                    break;
-                case ProficienciesEnum.Lore:
-                    character.Lore += 1;
-                    break;
-                case ProficienciesEnum.Perception:
-                    character.Perception += 1;
-                    break;
-                case ProficienciesEnum.Anima:
-                    character.Anima += 1;
-                    break;
-                case ProficienciesEnum.Deduction:
-                    character.Deduction += 1;
-                    break;
-                case ProficienciesEnum.Streetwise:
-                    character.Streetwise += 1;
-                    break;
-                case ProficienciesEnum.Barter:
-                    character.Barter += 1;
-                    break;
-                case ProficienciesEnum.Charm:
-                    character.Charm += 1;
-                    break;
-                case ProficienciesEnum.Rally:
-                    character.Rally += 1;
-                    break;
-                case ProficienciesEnum.Cool:
-                    character.Cool += 1;
-                    break;
-                case ProficienciesEnum.Diplomacy:
-                    character.Cool += 1;
-                    break;
-                default:
-                    break;
-            }
-        }
-
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         #region Roll for XP
@@ -687,10 +617,10 @@ class Program
             currentField.Value = new PdfString(character.Race);
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vit_die"];
-            currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Discipline.FrontlineFighter));
+            currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Trait));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["anima"];
-            currentField.Value = new PdfString(character.AnimaStat.ToString());
+            currentField.Value = new PdfString(ConvertAnimaToDiceString(character.AnimaStat, character.Trait));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vitality"];
             currentField.Value = new PdfString(character.Vitality.ToString());
@@ -898,9 +828,21 @@ class Program
         }
     }
 
-    public static string ConvertVitToDiceString(int vit, bool FrontlineFighter = false)
+    public static string ConvertVitToDiceString(int vit, TraitsEnum Trait)
     {
-        if (!FrontlineFighter) return "1d" + vit;
+        if (Trait != TraitsEnum.Bullwark) return "1d" + vit;
+
+        switch(vit) {
+            case 12:
+                return "1d" + vit + "+1";
+            default:
+                return "1d" + (vit + 2);
+        }
+    }
+
+    public static string ConvertAnimaToDiceString(int vit, TraitsEnum Trait)
+    {
+        if (Trait != TraitsEnum.Sage) return "1d" + vit;
 
         switch(vit) {
             case 12:
@@ -933,5 +875,112 @@ class Program
         }
 
         return sum;
+    }
+
+    static void ProficiencySelection(BaseCharacter character)
+    {
+        int prof1 = 0;
+        int prof2 = 0;
+        int prof3 = 0;
+        int prof4 = 0;
+        int prof5 = 0;
+
+        bool profCheckFailed = true;
+        while(profCheckFailed) {
+            Console.WriteLine("Select 5 Proficiencies (press enter after each):");
+            int profNum = 1;
+            foreach (var prof in character.PossibleProficiencies)
+            {
+                Console.WriteLine(profNum + ": " + prof);
+                profNum++;
+            }
+
+            prof1 = Convert.ToInt32(Console.ReadLine());
+            prof2 = Convert.ToInt32(Console.ReadLine());
+            prof3 = Convert.ToInt32(Console.ReadLine());
+            prof4 = Convert.ToInt32(Console.ReadLine());
+            prof5 = Convert.ToInt32(Console.ReadLine());
+
+            HashSet<int> profs = new(){prof1, prof2, prof3, prof4, prof5};
+            profCheckFailed = profs.Count != 5;
+
+            if (profCheckFailed) {
+                Console.WriteLine("\nYou can only pick each Proficiency one time.");
+            }
+        }
+
+        List<ProficienciesEnum> selectedProficiencies = new()
+        {
+            character.PossibleProficiencies[prof1-1],
+            character.PossibleProficiencies[prof2-1],
+            character.PossibleProficiencies[prof3-1],
+            character.PossibleProficiencies[prof4-1],
+            character.PossibleProficiencies[prof5-1]
+        };
+
+        foreach (var selectedProf in selectedProficiencies)
+        {
+            switch(selectedProf) {
+                case ProficienciesEnum.Athletics:
+                    character.Athletics += 1;
+                    break;
+                case ProficienciesEnum.Strength:
+                    character.Strength += 1;
+                    break;
+                case ProficienciesEnum.Intimidation:
+                    character.Intimidation += 1;
+                    break;
+                case ProficienciesEnum.Skulduggery:
+                    character.Skulduggery += 1;
+                    break;
+                case ProficienciesEnum.Stealth:
+                    character.Stealth += 1;
+                    break;
+                case ProficienciesEnum.Acrobatics:
+                    character.Acrobatics += 1;
+                    break;
+                case ProficienciesEnum.Constitution:
+                    character.Constitution += 1;
+                    break;
+                case ProficienciesEnum.Navigation:
+                    character.Navigation += 1;
+                    break;
+                case ProficienciesEnum.Survival:
+                    character.Survival += 1;
+                    break;
+                case ProficienciesEnum.Lore:
+                    character.Lore += 1;
+                    break;
+                case ProficienciesEnum.Perception:
+                    character.Perception += 1;
+                    break;
+                case ProficienciesEnum.Anima:
+                    character.Anima += 1;
+                    break;
+                case ProficienciesEnum.Deduction:
+                    character.Deduction += 1;
+                    break;
+                case ProficienciesEnum.Streetwise:
+                    character.Streetwise += 1;
+                    break;
+                case ProficienciesEnum.Barter:
+                    character.Barter += 1;
+                    break;
+                case ProficienciesEnum.Charm:
+                    character.Charm += 1;
+                    break;
+                case ProficienciesEnum.Rally:
+                    character.Rally += 1;
+                    break;
+                case ProficienciesEnum.Cool:
+                    character.Cool += 1;
+                    break;
+                case ProficienciesEnum.Diplomacy:
+                    character.Cool += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }
