@@ -1,5 +1,7 @@
 ﻿namespace TravelersTaleCharacterCreator;
 
+using System.ComponentModel.DataAnnotations;
+using System.Reflection;
 using System.Text.RegularExpressions;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.AcroForms;
@@ -16,9 +18,9 @@ class Program
         #region Race Selection
 
         Console.WriteLine("Select a Race:");
-        foreach (var race in Enum.GetValues(typeof(RaceEnum)))
+        foreach (RaceEnum race in Enum.GetValues(typeof(RaceEnum)))
         {
-            Console.WriteLine((int)race + ": " + race);
+            Console.WriteLine((int)race + ": " + GetDisplayName(race));
         }
         int raceInput = Convert.ToInt32(Console.ReadLine());
         var raceSelection = (RaceEnum)raceInput;
@@ -114,107 +116,104 @@ class Program
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         #region Race Proficiencies
-        ProficiencySelection(character);
-        #endregion
-        Console.WriteLine("\n-------------------------------\n");
-        #region Vocational Skills
+        int prof1 = 0;
+        int prof2 = 0;
+        int prof3 = 0;
+        int prof4 = 0;
+        int prof5 = 0;
 
-        int voc1 = 0;
-        int voc2 = 0;
-
-        bool vocCheckFailed = true;
-        while(vocCheckFailed) {
-            Console.WriteLine("Select 2 Vocational Skills (press enter after each):");
-            foreach (var voc in Enum.GetValues(typeof(VocationalSkillsEnum)))
+        bool profCheckFailed = true;
+        while(profCheckFailed) {
+            Console.WriteLine("Select 5 Proficiencies (press enter after each):");
+            int profNum = 1;
+            foreach (var prof in character.PossibleProficiencies)
             {
-                Console.WriteLine((int)voc + ": " + voc);
+                Console.WriteLine(profNum + ": " + prof);
+                profNum++;
             }
 
-            voc1 = Convert.ToInt32(Console.ReadLine());
-            voc2 = Convert.ToInt32(Console.ReadLine());
+            prof1 = Convert.ToInt32(Console.ReadLine());
+            prof2 = Convert.ToInt32(Console.ReadLine());
+            prof3 = Convert.ToInt32(Console.ReadLine());
+            prof4 = Convert.ToInt32(Console.ReadLine());
+            prof5 = Convert.ToInt32(Console.ReadLine());
 
-            HashSet<int> vocs = new(){voc1, voc2};
-            vocCheckFailed = vocs.Count != 2;
+            HashSet<int> profs = new(){prof1, prof2, prof3, prof4, prof5};
+            profCheckFailed = profs.Count != 5;
 
-            if (vocCheckFailed) {
-                Console.WriteLine("\nYou can only pick each Vocational Skill one time.");
+            if (profCheckFailed) {
+                Console.WriteLine("\nYou can only pick each Proficiency one time.");
             }
         }
 
-        List<VocationalSkillsEnum> selectedVocs = new()
+        List<ProficienciesEnum> selectedProficiencies = new()
         {
-            (VocationalSkillsEnum)voc1,
-            (VocationalSkillsEnum)voc2,
+            character.PossibleProficiencies[prof1-1],
+            character.PossibleProficiencies[prof2-1],
+            character.PossibleProficiencies[prof3-1],
+            character.PossibleProficiencies[prof4-1],
+            character.PossibleProficiencies[prof5-1]
         };
 
-        foreach (var selectedVoc in selectedVocs)
+        foreach (var selectedProf in selectedProficiencies)
         {
-            switch(selectedVoc) {
-                case VocationalSkillsEnum.Farming:
-                    character.Farming += 1;
+            switch(selectedProf) {
+                case ProficienciesEnum.Athletics:
+                    character.Athletics += 1;
                     break;
-                case VocationalSkillsEnum.Science:
-                    character.Science += 1;
+                case ProficienciesEnum.Strength:
+                    character.Strength += 1;
                     break;
-                case VocationalSkillsEnum.Cooking:
-                    character.Cooking += 1;
+                case ProficienciesEnum.Intimidation:
+                    character.Intimidation += 1;
                     break;
-                case VocationalSkillsEnum.Medicine:
-                    character.Medicine += 1;
+                case ProficienciesEnum.Skulduggery:
+                    character.Skulduggery += 1;
                     break;
-                case VocationalSkillsEnum.Mechanics:
-                    character.Mechanics += 1;
+                case ProficienciesEnum.Stealth:
+                    character.Stealth += 1;
                     break;
-                case VocationalSkillsEnum.Technology:
-                    character.Technology += 1;
+                case ProficienciesEnum.Acrobatics:
+                    character.Acrobatics += 1;
                     break;
-                case VocationalSkillsEnum.Carpentry:
-                    character.Carpentry += 1;
+                case ProficienciesEnum.Constitution:
+                    character.Constitution += 1;
                     break;
-                case VocationalSkillsEnum.Smithing:
-                    character.Smithing += 1;
+                case ProficienciesEnum.Navigation:
+                    character.Navigation += 1;
                     break;
-                case VocationalSkillsEnum.Mounting:
-                    character.Mounting += 1;
+                case ProficienciesEnum.Survival:
+                    character.Survival += 1;
                     break;
-                case VocationalSkillsEnum.Fishing:
-                    character.Fishing += 1;
+                case ProficienciesEnum.Lore:
+                    character.Lore += 1;
                     break;
-                case VocationalSkillsEnum.Alchemy:
-                    character.Alchemy += 1;
+                case ProficienciesEnum.Perception:
+                    character.Perception += 1;
                     break;
-                case VocationalSkillsEnum.Weaving:
-                    character.Weaving += 1;
+                case ProficienciesEnum.Anima:
+                    character.Anima += 1;
                     break;
-                case VocationalSkillsEnum.Leatherworking:
-                    character.Leatherworking += 1;
+                case ProficienciesEnum.Deduction:
+                    character.Deduction += 1;
                     break;
-                case VocationalSkillsEnum.Music:
-                    character.Music += 1;
+                case ProficienciesEnum.Streetwise:
+                    character.Streetwise += 1;
                     break;
-                case VocationalSkillsEnum.Art:
-                    character.Art += 1;
+                case ProficienciesEnum.Barter:
+                    character.Barter += 1;
                     break;
-                case VocationalSkillsEnum.Botany:
-                    character.Botany += 1;
+                case ProficienciesEnum.Charm:
+                    character.Charm += 1;
                     break;
-                case VocationalSkillsEnum.Hunting:
-                    character.Hunting += 1;
+                case ProficienciesEnum.Rally:
+                    character.Rally += 1;
                     break;
-                case VocationalSkillsEnum.Skinning:
-                    character.Skinning += 1;
+                case ProficienciesEnum.Cool:
+                    character.Cool += 1;
                     break;
-                case VocationalSkillsEnum.Foraging:
-                    character.Foraging += 1;
-                    break;
-                case VocationalSkillsEnum.Taming:
-                    character.Taming += 1;
-                    break;
-                case VocationalSkillsEnum.Piloting:
-                    character.Piloting += 1;
-                    break;
-                case VocationalSkillsEnum.Sailing:
-                    character.Sailing += 1;
+                case ProficienciesEnum.Diplomacy:
+                    character.Cool += 1;
                     break;
                 default:
                     break;
@@ -222,7 +221,205 @@ class Program
         }
         #endregion
         Console.WriteLine("\n-------------------------------\n");
-        #region Discipline
+        #region Vocational Skills (deprecated)
+
+        // int voc1 = 0;
+        // int voc2 = 0;
+
+        // bool vocCheckFailed = true;
+        // while(vocCheckFailed) {
+        //     Console.WriteLine("Select 2 Vocational Skills (press enter after each):");
+        //     foreach (var voc in Enum.GetValues(typeof(VocationalSkillsEnum)))
+        //     {
+        //         Console.WriteLine((int)voc + ": " + voc);
+        //     }
+
+        //     voc1 = Convert.ToInt32(Console.ReadLine());
+        //     voc2 = Convert.ToInt32(Console.ReadLine());
+
+        //     HashSet<int> vocs = new(){voc1, voc2};
+        //     vocCheckFailed = vocs.Count != 2;
+
+        //     if (vocCheckFailed) {
+        //         Console.WriteLine("\nYou can only pick each Vocational Skill one time.");
+        //     }
+        // }
+
+        // List<VocationalSkillsEnum> selectedVocs = new()
+        // {
+        //     (VocationalSkillsEnum)voc1,
+        //     (VocationalSkillsEnum)voc2,
+        // };
+
+        // foreach (var selectedVoc in selectedVocs)
+        // {
+        //     switch(selectedVoc) {
+        //         case VocationalSkillsEnum.Farming:
+        //             character.Farming += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Science:
+        //             character.Science += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Cooking:
+        //             character.Cooking += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Medicine:
+        //             character.Medicine += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Mechanics:
+        //             character.Mechanics += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Technology:
+        //             character.Technology += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Carpentry:
+        //             character.Carpentry += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Smithing:
+        //             character.Smithing += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Mounting:
+        //             character.Mounting += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Fishing:
+        //             character.Fishing += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Alchemy:
+        //             character.Alchemy += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Weaving:
+        //             character.Weaving += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Leatherworking:
+        //             character.Leatherworking += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Music:
+        //             character.Music += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Art:
+        //             character.Art += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Botany:
+        //             character.Botany += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Hunting:
+        //             character.Hunting += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Skinning:
+        //             character.Skinning += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Foraging:
+        //             character.Foraging += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Taming:
+        //             character.Taming += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Piloting:
+        //             character.Piloting += 1;
+        //             break;
+        //         case VocationalSkillsEnum.Sailing:
+        //             character.Sailing += 1;
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
+        #endregion
+        #region Background
+        Console.WriteLine("Choose your character's background skills (need half the XP to level them up):");
+        int backgroundSkill1 = 0;
+        int backgroundSkill2 = 0;
+        int backgroundSkill3 = 0;
+        int backgroundSkill4 = 0;
+        int backgroundSkill5 = 0;
+
+        bool backgroundSkillCheck1Failed = true;
+        bool backgroundSkillCheck2Failed = true;
+
+        while(backgroundSkillCheck1Failed) {
+            Console.WriteLine("Select 2 Vocational Skills (press enter after each):");
+            foreach (var voc in Enum.GetValues(typeof(VocationalSkillsEnum)))
+            {
+                Console.WriteLine((int)voc + ": " + voc);
+            }
+
+            backgroundSkill1 = Convert.ToInt32(Console.ReadLine());
+            backgroundSkill2 = Convert.ToInt32(Console.ReadLine());
+
+            HashSet<int> backs = new(){backgroundSkill1, backgroundSkill2};
+            backgroundSkillCheck1Failed = backs.Count != 2;
+
+            if (backgroundSkillCheck1Failed) {
+                Console.WriteLine("\nYou can only pick each skill one time.");
+            }
+        }
+
+        character.BackgroundVocSkills = new()
+        {
+            (VocationalSkillsEnum)backgroundSkill1,
+            (VocationalSkillsEnum)backgroundSkill2,
+        };
+
+        while(backgroundSkillCheck2Failed) {
+            Console.WriteLine("Select 3 more Skills (press enter after each):\n");
+            Console.WriteLine("---------------- Proficiencies ----------------");
+            foreach (var prof in Enum.GetValues(typeof(ProficienciesEnum)))
+            {
+                Console.WriteLine((int)prof + ": " + prof);
+            }
+            Console.WriteLine("---------------- Vocational Skills ----------------");
+            foreach (VocationalSkillsEnum voc in Enum.GetValues(typeof(VocationalSkillsEnum)))
+            {
+                if (!character.BackgroundVocSkills.Contains(voc))
+                {
+                    Console.WriteLine((int)voc + ": " + voc);
+                }
+            }
+
+            backgroundSkill3 = Convert.ToInt32(Console.ReadLine());
+            backgroundSkill4 = Convert.ToInt32(Console.ReadLine());
+            backgroundSkill5 = Convert.ToInt32(Console.ReadLine());
+
+            HashSet<int> backs = new(){backgroundSkill1, backgroundSkill2, backgroundSkill3, backgroundSkill4, backgroundSkill5};
+            backgroundSkillCheck2Failed = backs.Count != 5;
+
+            if (backgroundSkillCheck1Failed) {
+                Console.WriteLine("\nYou can only pick each skill one time.");
+            }
+        }
+
+        character.BackgroundProfSkills = new();
+
+        if(backgroundSkill3 > Enum.GetValues(typeof(ProficienciesEnum)).Cast<int>().Max())
+        {
+             character.BackgroundVocSkills.Add((VocationalSkillsEnum)backgroundSkill3);
+        }
+        else
+        {
+            character.BackgroundProfSkills.Add((ProficienciesEnum)backgroundSkill3);
+        }
+
+        if(backgroundSkill4 > Enum.GetValues(typeof(ProficienciesEnum)).Cast<int>().Max())
+        {
+             character.BackgroundVocSkills.Add((VocationalSkillsEnum)backgroundSkill4);
+        }
+        else
+        {
+            character.BackgroundProfSkills.Add((ProficienciesEnum)backgroundSkill4);
+        }
+
+        if(backgroundSkill5 > Enum.GetValues(typeof(ProficienciesEnum)).Cast<int>().Max())
+        {
+            character.BackgroundVocSkills.Add((VocationalSkillsEnum)backgroundSkill5);
+        }
+        else
+        {
+            character.BackgroundProfSkills.Add((ProficienciesEnum)backgroundSkill5);
+        }
+
+        #endregion
+        Console.WriteLine("\n-------------------------------\n");
+        #region Discipline (deprecated)
         // Console.WriteLine("Select a Discipline:");
         // foreach (var discipline in Enum.GetValues(typeof(DisciplinesEnum)))
         // {
@@ -353,131 +550,130 @@ class Program
         // }
 
         #endregion
-        Console.WriteLine("\n-------------------------------\n");
-        #region Trait
-        Console.WriteLine("Select a Trait:");
-        foreach (var trait in Enum.GetValues(typeof(TraitsEnum)))
+        #region Persona
+        Console.WriteLine("Select a Persona:");
+        foreach (var persona in Enum.GetValues(typeof(PersonasEnum)))
         {
-            Console.WriteLine((int)trait + ": " + trait);
+            Console.WriteLine((int)persona + ": " + persona);
         }
-        int traitInput = Convert.ToInt32(Console.ReadLine());
-        var traitSelection = (TraitsEnum)traitInput;
+        int personaInput = Convert.ToInt32(Console.ReadLine());
+        var personaSelection = (PersonasEnum)personaInput;
 
-        switch(traitSelection) {
-            case TraitsEnum.Bullwark:
-                character.Trait = TraitsEnum.Bullwark;
+        switch(personaSelection) {
+            case PersonasEnum.Bullwark:
+                character.Persona = PersonasEnum.Bullwark;
                 break;
-            case TraitsEnum.Sage:
-                character.Trait = TraitsEnum.Sage;
+            case PersonasEnum.Sage:
+                character.Persona = PersonasEnum.Sage;
                 break;
-            case TraitsEnum.Jack:
-                character.Trait = TraitsEnum.Jack;
-                ProficiencySelection(character);
+            case PersonasEnum.Jack:
+                character.Persona = PersonasEnum.Jack;
+                JackBackgroundSKills(character);
                 break;
-            case TraitsEnum.Mobile:
-                character.Trait = TraitsEnum.Mobile;
+            case PersonasEnum.Rover:
+                character.Persona = PersonasEnum.Rover;
                 character.Movement += 10;
                 break;
-            case TraitsEnum.Prodigy:
-                character.Trait = TraitsEnum.Prodigy;
+            case PersonasEnum.Prodigy:
+                character.Persona = PersonasEnum.Prodigy;
+                // todo, implement later
                 break;
             default:
                 break;
         }
         #endregion
         Console.WriteLine("\n-------------------------------\n");
-        #region Roll for XP
+        #region Roll for XP (deprecated)
 
-        Console.WriteLine("Rolling for XP...");
+        // Console.WriteLine("Rolling for XP...");
 
-        int totalXP = RollForXP();
+        // int totalXP = RollForXP();
 
-        while (totalXP >= 50) {
-            Console.WriteLine("Total XP Remaining: " + totalXP);
-            Console.WriteLine("Select a Stat to Level Up (-50 XP):");
-            foreach (var coreStat in Enum.GetValues(typeof(CoreStatsEnum)))
-            {
-                Console.Write((int)coreStat + ": " + coreStat + " - Current Level: ");
+        // while (totalXP >= 50) {
+        //     Console.WriteLine("Total XP Remaining: " + totalXP);
+        //     Console.WriteLine("Select a Stat to Level Up (-50 XP):");
+        //     foreach (var coreStat in Enum.GetValues(typeof(CoreStatsEnum)))
+        //     {
+        //         Console.Write((int)coreStat + ": " + coreStat + " - Current Level: ");
 
-                switch(coreStat) {
-                    case CoreStatsEnum.Power:
-                        Console.Write(character.Power + "\n");
-                        break;
-                    case CoreStatsEnum.Speed:
-                        Console.Write(character.Speed + "\n");
-                        break;
-                    case CoreStatsEnum.Vigor:
-                        Console.Write(character.Vigor + "\n");
-                        break;
-                    case CoreStatsEnum.Wit:
-                        Console.Write(character.Wit + "\n");
-                        break;
-                    case CoreStatsEnum.Presence:
-                        Console.Write(character.Presence + "\n");
-                        break;
-                    default:
-                        break;
-                }
-            }
+        //         switch(coreStat) {
+        //             case CoreStatsEnum.Power:
+        //                 Console.Write(character.Power + "\n");
+        //                 break;
+        //             case CoreStatsEnum.Speed:
+        //                 Console.Write(character.Speed + "\n");
+        //                 break;
+        //             case CoreStatsEnum.Vigor:
+        //                 Console.Write(character.Vigor + "\n");
+        //                 break;
+        //             case CoreStatsEnum.Wit:
+        //                 Console.Write(character.Wit + "\n");
+        //                 break;
+        //             case CoreStatsEnum.Presence:
+        //                 Console.Write(character.Presence + "\n");
+        //                 break;
+        //             default:
+        //                 break;
+        //         }
+        //     }
 
-            int statInput = Convert.ToInt32(Console.ReadLine());
-            var statSelection = (CoreStatsEnum)statInput;
+        //     int statInput = Convert.ToInt32(Console.ReadLine());
+        //     var statSelection = (CoreStatsEnum)statInput;
 
-            switch(statSelection) {
-                case CoreStatsEnum.Power:
-                    if (character.Power < 10) {
-                        character.Power += 1;
-                        totalXP -= 50;
-                    }
-                    else {
-                        Console.WriteLine("Power is already at Level 10. Pick a different stat.");
-                    }
-                    break;
-                case CoreStatsEnum.Speed:
-                    if (character.Speed < 10) {
-                        character.Speed += 1;
-                        totalXP -= 50;
-                    }
-                    else {
-                        Console.WriteLine("Speed is already at Level 10. Pick a different stat.");
-                    }
-                    break;
-                case CoreStatsEnum.Vigor:
-                    if (character.Vigor < 10) {
-                        character.Vigor += 1;
-                        totalXP -= 50;
-                    }
-                    else {
-                        Console.WriteLine("Vigor is already at Level 10. Pick a different stat.");
-                    }
-                    break;
-                case CoreStatsEnum.Wit:
-                    if (character.Wit < 10) {
-                        character.Wit += 1;
-                        totalXP -= 50;
-                    }
-                    else {
-                        Console.WriteLine("Wit is already at Level 10. Pick a different stat.");
-                    }
-                    break;
-                case CoreStatsEnum.Presence:
-                    if (character.Presence < 10) {
-                        character.Presence += 1;
-                        totalXP -= 50;
-                    }
-                    else {
-                        Console.WriteLine("Presence is already at Level 10. Pick a different stat.");
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
+        //     switch(statSelection) {
+        //         case CoreStatsEnum.Power:
+        //             if (character.Power < 10) {
+        //                 character.Power += 1;
+        //                 totalXP -= 50;
+        //             }
+        //             else {
+        //                 Console.WriteLine("Power is already at Level 10. Pick a different stat.");
+        //             }
+        //             break;
+        //         case CoreStatsEnum.Speed:
+        //             if (character.Speed < 10) {
+        //                 character.Speed += 1;
+        //                 totalXP -= 50;
+        //             }
+        //             else {
+        //                 Console.WriteLine("Speed is already at Level 10. Pick a different stat.");
+        //             }
+        //             break;
+        //         case CoreStatsEnum.Vigor:
+        //             if (character.Vigor < 10) {
+        //                 character.Vigor += 1;
+        //                 totalXP -= 50;
+        //             }
+        //             else {
+        //                 Console.WriteLine("Vigor is already at Level 10. Pick a different stat.");
+        //             }
+        //             break;
+        //         case CoreStatsEnum.Wit:
+        //             if (character.Wit < 10) {
+        //                 character.Wit += 1;
+        //                 totalXP -= 50;
+        //             }
+        //             else {
+        //                 Console.WriteLine("Wit is already at Level 10. Pick a different stat.");
+        //             }
+        //             break;
+        //         case CoreStatsEnum.Presence:
+        //             if (character.Presence < 10) {
+        //                 character.Presence += 1;
+        //                 totalXP -= 50;
+        //             }
+        //             else {
+        //                 Console.WriteLine("Presence is already at Level 10. Pick a different stat.");
+        //             }
+        //             break;
+        //         default:
+        //             break;
+        //     }
+        // }
         
-        character.SkillXP = totalXP;
-        Console.WriteLine("Remaining XP for your Skill XP Pool: " + character.SkillXP + "\n");
+        // character.SkillXP = totalXP;
+        // Console.WriteLine("Remaining XP for your Skill XP Pool: " + character.SkillXP + "\n");
         #endregion
-        Console.WriteLine("\n-------------------------------\n");
         #region Vitality
         Console.WriteLine("Calculating Vitality...");
         int healthDie = character.HealthDie;
@@ -502,9 +698,55 @@ class Program
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         
-        //todo: weapon
+        //todo: weapon, not now
 
-        //todo: shield
+        //todo: shield, not now
+
+        #region Equipment
+        int eq1 = 0;
+        int eq2 = 0;
+        int eq3 = 0;
+
+        bool eqCheckFailed = true;
+        while(eqCheckFailed) {
+            Console.WriteLine("Select 3 pieces of Equipment (press enter after each):");
+            foreach (EquipmentEnum eq in Enum.GetValues(typeof(EquipmentEnum)))
+            {
+                Console.WriteLine((int)eq + ": " + GetDisplayName(eq));
+            }
+
+            eq1 = Convert.ToInt32(Console.ReadLine());
+            eq2 = Convert.ToInt32(Console.ReadLine());
+            eq3 = Convert.ToInt32(Console.ReadLine());
+
+            HashSet<int> eqs = new(){eq1, eq2, eq3};
+            eqCheckFailed = eqs.Count != 3;
+
+            if (eqCheckFailed) {
+                Console.WriteLine("\nYou can only pick each piece of Equipment one time.");
+            }
+        }
+
+        character.Equipment = new()
+        {
+            (EquipmentEnum)eq1,
+            (EquipmentEnum)eq2,
+            (EquipmentEnum)eq3,
+        };
+
+        foreach (var selectedEq in character.Equipment)
+        {
+            switch(selectedEq) {
+                case EquipmentEnum.Other:
+                    Console.WriteLine("What \"Other...\" Equipment do you want? (1 item):");
+                    character.otherEquipment = Console.ReadLine();
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #endregion
 
         #region Armor
 
@@ -547,7 +789,7 @@ class Program
 
         #endregion
         
-        #region Wren
+        #region Wren (not implemented)
         // Console.WriteLine("Select a Wren:");
         // foreach (var wren in Enum.GetValues(typeof(WrensEnum)))
         // {
@@ -617,10 +859,10 @@ class Program
             currentField.Value = new PdfString(character.Race);
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vit_die"];
-            currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Trait));
+            currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Persona));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["anima"];
-            currentField.Value = new PdfString(ConvertAnimaToDiceString(character.AnimaStat, character.Trait));
+            currentField.Value = new PdfString(ConvertAnimaToDiceString(character.AnimaStat, character.Persona));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vitality"];
             currentField.Value = new PdfString(character.Vitality.ToString());
@@ -746,6 +988,15 @@ class Program
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["smithing"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Smithing));
 
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["masonry"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Masonry));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["cartography"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Cartography));
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["scavenging"];
+            currentField.Value = new PdfString(ConvertIntToDiceString(character.Scavenging));
+
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["mounting"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Mounting));
 
@@ -787,8 +1038,176 @@ class Program
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["sailing"];
             currentField.Value = new PdfString(ConvertIntToDiceString(character.Sailing));
+
+            // Background Skills
+
+            PdfCheckBoxField currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["athletics_b"];
+            foreach (var bProf in character.BackgroundProfSkills)
+            {
+                switch(bProf) {
+                    case ProficienciesEnum.Athletics:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["athletics_b"];
+                        break;
+                    case ProficienciesEnum.Strength:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["strength_b"];
+                        break;
+                    case ProficienciesEnum.Intimidation:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["intimidation_b"];
+                        break;
+                    case ProficienciesEnum.Skulduggery:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["skulduggery_b"];
+                        break;
+                    case ProficienciesEnum.Stealth:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["stealth_b"];
+                        break;
+                    case ProficienciesEnum.Acrobatics:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["acrobatics_b"];
+                        break;
+                    case ProficienciesEnum.Constitution:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["constitution_b"];
+                        break;
+                    case ProficienciesEnum.Navigation:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["navigation_b"];
+                        break;
+                    case ProficienciesEnum.Survival:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["survival_b"];
+                        break;
+                    case ProficienciesEnum.Lore:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["lore_b"];
+                        break;
+                    case ProficienciesEnum.Perception:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["perception_b"];
+                        break;
+                    case ProficienciesEnum.Anima:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["anima_b"];
+                        break;
+                    case ProficienciesEnum.Deduction:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["deduction_b"];
+                        break;
+                    case ProficienciesEnum.Streetwise:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["streetwise_b"];
+                        break;
+                    case ProficienciesEnum.Barter:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["barter_b"];
+                        break;
+                    case ProficienciesEnum.Charm:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["charm_b"];
+                        break;
+                    case ProficienciesEnum.Rally:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["rally_b"];
+                        break;
+                    case ProficienciesEnum.Cool:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["cool_b"];
+                        break;
+                    case ProficienciesEnum.Diplomacy:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["diplomacy_b"];
+                        break;
+                    default:
+                        break;
+                }
+
+                currentCheckBoxField.Value = new PdfString("Yes_furo");
+            }
+
+            foreach (var bVoc in character.BackgroundVocSkills)
+            {
+                switch(bVoc) {
+                    case VocationalSkillsEnum.Farming:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["farming_b"];
+                        break;
+                    case VocationalSkillsEnum.Science:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["science_b"];
+                        break;
+                    case VocationalSkillsEnum.Cooking:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["cooking_b"];
+                        break;
+                    case VocationalSkillsEnum.Medicine:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["medicine_b"];
+                        break;
+                    case VocationalSkillsEnum.Mechanics:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["mechanics_b"];
+                        break;
+                    case VocationalSkillsEnum.Masonry:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["masonry_b"];
+                        break;
+                    case VocationalSkillsEnum.Cartography:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["cartography_b"];
+                        break;
+                    case VocationalSkillsEnum.Scavenging:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["scavenging_b"];
+                        break;
+                    case VocationalSkillsEnum.Carpentry:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["carpentry_b"];
+                        break;
+                    case VocationalSkillsEnum.Smithing:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["smithing_b"];
+                        break;
+                    case VocationalSkillsEnum.Mounting:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["mounting_b"];
+                        break;
+                    case VocationalSkillsEnum.Fishing:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["fishing_b"];
+                        break;
+                    case VocationalSkillsEnum.Alchemy:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["alchemy_b"];
+                        break;
+                    case VocationalSkillsEnum.Weaving:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["weaving_b"];
+                        break;
+                    case VocationalSkillsEnum.Leatherworking:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["leatherworking_b"];
+                        break;
+                    case VocationalSkillsEnum.Music:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["music_b"];
+                        break;
+                    case VocationalSkillsEnum.Art:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["art_b"];
+                        break;
+                    case VocationalSkillsEnum.Botany:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["botany_b"];
+                        break;
+                    case VocationalSkillsEnum.Hunting:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["hunting_b"];
+                        break;
+                    case VocationalSkillsEnum.Skinning:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["skinning_b"];
+                        break;
+                    case VocationalSkillsEnum.Foraging:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["foraging_b"];
+                        break;
+                    case VocationalSkillsEnum.Taming:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["taming_b"];
+                        break;
+                    case VocationalSkillsEnum.Piloting:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["piloting_b"];
+                        break;
+                    case VocationalSkillsEnum.Sailing:
+                        currentCheckBoxField = (PdfCheckBoxField)PDFDoc.AcroForm.Fields["sailing_b"];
+                        break;
+                    default:
+                        break;
+                }
+
+                currentCheckBoxField.Value = new PdfString("Yes_furo");
+            }
+
+            // Eqiupment
+
+            string equipmentList = "";
+            foreach(var eq in character.Equipment) {
+                if (eq != EquipmentEnum.Other) 
+                {
+                    equipmentList += GetDisplayName(eq) + "\n\n";
+                }
+                else 
+                {
+                    equipmentList += character.otherEquipment + "\n\n";
+                }
+            }
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["equipment"];
+            currentField.Value = new PdfString(equipmentList);
             
-            // todo, save somewhere better
             PDFDoc.Save(Environment.CurrentDirectory + outputFileName);
         }
     }
@@ -828,9 +1247,9 @@ class Program
         }
     }
 
-    public static string ConvertVitToDiceString(int vit, TraitsEnum Trait)
+    public static string ConvertVitToDiceString(int vit, PersonasEnum Trait)
     {
-        if (Trait != TraitsEnum.Bullwark) return "1d" + vit;
+        if (Trait != PersonasEnum.Bullwark) return "1d" + vit;
 
         switch(vit) {
             case 12:
@@ -840,9 +1259,9 @@ class Program
         }
     }
 
-    public static string ConvertAnimaToDiceString(int vit, TraitsEnum Trait)
+    public static string ConvertAnimaToDiceString(int vit, PersonasEnum Trait)
     {
-        if (Trait != TraitsEnum.Sage) return "1d" + vit;
+        if (Trait != PersonasEnum.Sage) return "1d" + vit;
 
         switch(vit) {
             case 12:
@@ -877,110 +1296,157 @@ class Program
         return sum;
     }
 
-    static void ProficiencySelection(BaseCharacter character)
+    static string GetDisplayName(Enum enumValue)
     {
-        int prof1 = 0;
-        int prof2 = 0;
-        int prof3 = 0;
-        int prof4 = 0;
-        int prof5 = 0;
+        return enumValue.GetType()
+        .GetMember(enumValue.ToString())
+        .First()
+        .GetCustomAttribute<DisplayAttribute>()
+        ?.GetName();
+    }
 
-        bool profCheckFailed = true;
-        while(profCheckFailed) {
-            Console.WriteLine("Select 5 Proficiencies (press enter after each):");
-            int profNum = 1;
-            foreach (var prof in character.PossibleProficiencies)
+    static void JackBackgroundSKills(BaseCharacter character)
+    {
+        Console.WriteLine("Choose your character's background skills (need half the XP to level them up):");
+        int backgroundSkill1 = 0;
+        int backgroundSkill2 = 0;
+        int backgroundSkill3 = 0;
+
+        bool backgroundSkillCheckFailed = true;
+
+        while(backgroundSkillCheckFailed) {
+            Console.WriteLine("Select 3 more Skills (press enter after each):\n");
+            Console.WriteLine("---------------- Proficiencies ----------------");
+            foreach (ProficienciesEnum prof in Enum.GetValues(typeof(ProficienciesEnum)))
             {
-                Console.WriteLine(profNum + ": " + prof);
-                profNum++;
+                if (!character.BackgroundProfSkills.Contains(prof))
+                {
+                    Console.WriteLine((int)prof + ": " + prof);
+                }
+            }
+            Console.WriteLine("---------------- Vocational Skills ----------------");
+            foreach (VocationalSkillsEnum voc in Enum.GetValues(typeof(VocationalSkillsEnum)))
+            {
+                if (!character.BackgroundVocSkills.Contains(voc))
+                {
+                    Console.WriteLine((int)voc + ": " + voc);
+                }
             }
 
-            prof1 = Convert.ToInt32(Console.ReadLine());
-            prof2 = Convert.ToInt32(Console.ReadLine());
-            prof3 = Convert.ToInt32(Console.ReadLine());
-            prof4 = Convert.ToInt32(Console.ReadLine());
-            prof5 = Convert.ToInt32(Console.ReadLine());
+            backgroundSkill1 = Convert.ToInt32(Console.ReadLine());
+            backgroundSkill2 = Convert.ToInt32(Console.ReadLine());
+            backgroundSkill3 = Convert.ToInt32(Console.ReadLine());
 
-            HashSet<int> profs = new(){prof1, prof2, prof3, prof4, prof5};
-            profCheckFailed = profs.Count != 5;
+            HashSet<int> backs = new(){backgroundSkill1, backgroundSkill2, backgroundSkill3};
+            backgroundSkillCheckFailed = backs.Count != 3;
 
-            if (profCheckFailed) {
-                Console.WriteLine("\nYou can only pick each Proficiency one time.");
+            if (backgroundSkillCheckFailed) {
+                Console.WriteLine("\nYou can only pick each skill one time.");
             }
         }
 
-        List<ProficienciesEnum> selectedProficiencies = new()
+        if(backgroundSkill1 > Enum.GetValues(typeof(ProficienciesEnum)).Cast<int>().Max())
         {
-            character.PossibleProficiencies[prof1-1],
-            character.PossibleProficiencies[prof2-1],
-            character.PossibleProficiencies[prof3-1],
-            character.PossibleProficiencies[prof4-1],
-            character.PossibleProficiencies[prof5-1]
-        };
+             character.BackgroundVocSkills.Add((VocationalSkillsEnum)backgroundSkill1);
+        }
+        else
+        {
+            character.BackgroundProfSkills.Add((ProficienciesEnum)backgroundSkill1);
+        }
 
-        foreach (var selectedProf in selectedProficiencies)
+        if(backgroundSkill2 > Enum.GetValues(typeof(ProficienciesEnum)).Cast<int>().Max())
         {
-            switch(selectedProf) {
-                case ProficienciesEnum.Athletics:
-                    character.Athletics += 1;
-                    break;
-                case ProficienciesEnum.Strength:
-                    character.Strength += 1;
-                    break;
-                case ProficienciesEnum.Intimidation:
-                    character.Intimidation += 1;
-                    break;
-                case ProficienciesEnum.Skulduggery:
-                    character.Skulduggery += 1;
-                    break;
-                case ProficienciesEnum.Stealth:
-                    character.Stealth += 1;
-                    break;
-                case ProficienciesEnum.Acrobatics:
-                    character.Acrobatics += 1;
-                    break;
-                case ProficienciesEnum.Constitution:
-                    character.Constitution += 1;
-                    break;
-                case ProficienciesEnum.Navigation:
-                    character.Navigation += 1;
-                    break;
-                case ProficienciesEnum.Survival:
-                    character.Survival += 1;
-                    break;
-                case ProficienciesEnum.Lore:
-                    character.Lore += 1;
-                    break;
-                case ProficienciesEnum.Perception:
-                    character.Perception += 1;
-                    break;
-                case ProficienciesEnum.Anima:
-                    character.Anima += 1;
-                    break;
-                case ProficienciesEnum.Deduction:
-                    character.Deduction += 1;
-                    break;
-                case ProficienciesEnum.Streetwise:
-                    character.Streetwise += 1;
-                    break;
-                case ProficienciesEnum.Barter:
-                    character.Barter += 1;
-                    break;
-                case ProficienciesEnum.Charm:
-                    character.Charm += 1;
-                    break;
-                case ProficienciesEnum.Rally:
-                    character.Rally += 1;
-                    break;
-                case ProficienciesEnum.Cool:
-                    character.Cool += 1;
-                    break;
-                case ProficienciesEnum.Diplomacy:
-                    character.Cool += 1;
-                    break;
-                default:
-                    break;
-            }
+             character.BackgroundVocSkills.Add((VocationalSkillsEnum)backgroundSkill2);
+        }
+        else
+        {
+            character.BackgroundProfSkills.Add((ProficienciesEnum)backgroundSkill2);
+        }
+
+        if(backgroundSkill3 > Enum.GetValues(typeof(ProficienciesEnum)).Cast<int>().Max())
+        {
+             character.BackgroundVocSkills.Add((VocationalSkillsEnum)backgroundSkill3);
+        }
+        else
+        {
+            character.BackgroundProfSkills.Add((ProficienciesEnum)backgroundSkill3);
         }
     }
+
+    // static void UpdateCharacterVocationalSkills(BaseCharacter character, List<VocationalSkillsEnum> selectedVocs) {
+    //     foreach (var selectedVoc in selectedVocs)
+    //     {
+    //         switch(selectedVoc) {
+    //             case VocationalSkillsEnum.Farming:
+    //                 character.Farming += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Science:
+    //                 character.Science += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Cooking:
+    //                 character.Cooking += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Medicine:
+    //                 character.Medicine += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Mechanics:
+    //                 character.Mechanics += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Technology:
+    //                 character.Technology += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Carpentry:
+    //                 character.Carpentry += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Smithing:
+    //                 character.Smithing += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Mounting:
+    //                 character.Mounting += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Fishing:
+    //                 character.Fishing += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Alchemy:
+    //                 character.Alchemy += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Weaving:
+    //                 character.Weaving += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Leatherworking:
+    //                 character.Leatherworking += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Music:
+    //                 character.Music += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Art:
+    //                 character.Art += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Botany:
+    //                 character.Botany += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Hunting:
+    //                 character.Hunting += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Skinning:
+    //                 character.Skinning += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Foraging:
+    //                 character.Foraging += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Taming:
+    //                 character.Taming += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Piloting:
+    //                 character.Piloting += 1;
+    //                 break;
+    //             case VocationalSkillsEnum.Sailing:
+    //                 character.Sailing += 1;
+    //                 break;
+    //             default:
+    //                 break;
+    //         }
+    //     }
+    // }
+
 }

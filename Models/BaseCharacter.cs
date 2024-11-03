@@ -7,7 +7,7 @@ public class BaseCharacter
     public string Race;
     public int SkillXP;
     // public BaseDiscipline Discipline;
-    public TraitsEnum Trait;
+    public PersonasEnum Persona;
     public BaseWren Wren;
     public BaseArmor Armor = null;
 
@@ -28,6 +28,10 @@ public class BaseCharacter
     public List<ProficienciesEnum> PossibleProficiencies;
     public int Vitality = 0;
     public List<string> RaceAbilities;
+    public List<VocationalSkillsEnum> BackgroundVocSkills = new List<VocationalSkillsEnum>();
+    public List<ProficienciesEnum> BackgroundProfSkills = new List<ProficienciesEnum>();
+    public List<EquipmentEnum> Equipment = new List<EquipmentEnum>();
+    public string otherEquipment = "";
 
     #region Vocational Skills
     public int Farming = VocationalBaseValue;
@@ -52,6 +56,9 @@ public class BaseCharacter
     public int Taming = VocationalBaseValue;
     public int Piloting = VocationalBaseValue;
     public int Sailing = VocationalBaseValue;
+    public int Masonry = VocationalBaseValue;
+    public int Cartography = VocationalBaseValue;
+    public int Scavenging = VocationalBaseValue;
 
     #endregion
     
