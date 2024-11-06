@@ -686,14 +686,14 @@ class Program
                 break;
         }
 
-        double halfVigor = character.Vigor / 2;
-        character.Vitality = healthDie + (int)Math.Round(halfVigor);
+        // double halfVigor = character.Vigor / 2;
+        character.Vitality = healthDie + character.Vigor;
         Console.WriteLine("Your Vitality is: " + character.Vitality + "\n");
         #endregion
         Console.WriteLine("\n-------------------------------\n");
         #region Anima
         Console.WriteLine("Rolling for Anima...");
-        character.AnimaStat = RollForAnima();
+        character.AnimaStat = RollForAnima(character.Persona);
         Console.WriteLine("Your Anima is: " + character.AnimaStat + "\n");
         #endregion
         Console.WriteLine("\n-------------------------------\n");
@@ -749,43 +749,32 @@ class Program
         #endregion
 
         #region Armor
-
+        
         var light = new LightArmor();
         var medium = new MediumArmor();
         var heavy = new HeavyArmor();
-        if (character.Speed >= light.StatReqValue || character.Power >= medium.StatReqValue) {
-            Console.WriteLine("Choose Armor...");
+        
+        Console.WriteLine("1: Light Armor ~ " + light.DefenseRating + " D.R.");
+        Console.WriteLine("2: Medium Armor ~ " + medium.DefenseRating + " D.R. and " + medium.DodgeModifier + " Dodge");
+        Console.WriteLine("3: Heavy Armor ~ " + heavy.DefenseRating + " D.R. and " + heavy.DodgeModifier + " Dodge");
 
-            if (character.Speed >= light.StatReqValue) { 
-                Console.WriteLine("1: Light Armor ~ " + light.DefenseRating + " D.R.");
-            }
-
-            if (character.Power >= medium.StatReqValue) {
-                Console.WriteLine("2: Medium Armor ~ " + medium.DefenseRating + " D.R. and " + medium.DodgeModifier + " Dodge");
-            }
-
-            if (character.Power >= heavy.StatReqValue) {
-                Console.WriteLine("3: Heavy Armor ~ " + heavy.DefenseRating + " D.R. and " + heavy.DodgeModifier + " Dodge");
-            }
-
-            int armorInput = Convert.ToInt32(Console.ReadLine());
-            switch(armorInput) {
-                case 1:
-                    character.Armor = new LightArmor();
-                    break;
-                case 2:
-                    character.Armor = new MediumArmor();
-                    character.Dodge += character.Armor.DodgeModifier;
-                    break;
-                case 3:
-                    character.Armor = new HeavyArmor();
-                    character.Dodge += character.Armor.DodgeModifier;
-                    break;
-                default:
-                    break;
-            }
-            Console.WriteLine("\n-------------------------------\n");
+        int armorInput = Convert.ToInt32(Console.ReadLine());
+        switch(armorInput) {
+            case 1:
+                character.Armor = new LightArmor();
+                break;
+            case 2:
+                character.Armor = new MediumArmor();
+                character.Dodge += character.Armor.DodgeModifier;
+                break;
+            case 3:
+                character.Armor = new HeavyArmor();
+                character.Dodge += character.Armor.DodgeModifier;
+                break;
+            default:
+                break;
         }
+        Console.WriteLine("\n-------------------------------\n");
 
         #endregion
         
@@ -862,7 +851,7 @@ class Program
             currentField.Value = new PdfString(ConvertVitToDiceString(character.HealthDie, character.Persona));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["anima"];
-            currentField.Value = new PdfString(ConvertAnimaToDiceString(character.AnimaStat, character.Persona));
+            currentField.Value = new PdfString(character.AnimaStat.ToString());
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vitality"];
             currentField.Value = new PdfString(character.Vitality.ToString());
@@ -1259,17 +1248,6 @@ class Program
         }
     }
 
-    public static string ConvertAnimaToDiceString(int vit, PersonasEnum Trait)
-    {
-        if (Trait != PersonasEnum.Sage) return "1d" + vit;
-
-        switch(vit) {
-            case 12:
-                return "1d" + vit + "+1";
-            default:
-                return "1d" + (vit + 2);
-        }
-    }
     static int RollForXP() 
     {
         Random rnd = new Random();
@@ -1283,14 +1261,16 @@ class Program
         return sum *= 20;
     }
 
-    static int RollForAnima()
+    static int RollForAnima(PersonasEnum Trait)
     {
+        int diceNum = Trait != PersonasEnum.Sage ? 6 : 8;
+        
         Random rnd = new Random();
         int sum = 0;
 
         for(var i = 0; i < 3; i++)
         {
-            sum += rnd.Next(1, 7);
+            sum += rnd.Next(1, diceNum + 1);
         }
 
         return sum;
