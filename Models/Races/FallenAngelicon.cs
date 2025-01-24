@@ -17,9 +17,8 @@ public class FallenAngelicon : BaseCharacter
         this.HealthDie = 6;
         this.Movement = 30;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Survival,
             ProficienciesEnum.Skulduggery,
             ProficienciesEnum.Stealth,
             ProficienciesEnum.Lore,
@@ -35,8 +34,8 @@ public class FallenAngelicon : BaseCharacter
         switch(FallenAngeliconType)
         {
             case FallenAngeliconType.Warrior:
-                this.Power = 3;
-                this.Speed = 3;
+                this.Strength = 3;
+                this.Agility = 3;
                 this.Vigor = 2;
                 this.Wit = 1;
                 this.Presence = 1;
@@ -45,8 +44,8 @@ public class FallenAngelicon : BaseCharacter
                 this.Race += " (Warrior)";
                 break;
             case FallenAngeliconType.Guardian:
-                this.Power = 3;
-                this.Speed = 1;
+                this.Strength = 3;
+                this.Agility = 1;
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 2;
@@ -55,8 +54,8 @@ public class FallenAngelicon : BaseCharacter
                 this.Race += " (Guardian)";
                 break;
             case FallenAngeliconType.Messenger:
-                this.Power = 2;
-                this.Speed = 3;
+                this.Strength = 2;
+                this.Agility = 3;
                 this.Vigor = 1;
                 this.Wit = 2;
                 this.Presence = 2;
@@ -69,5 +68,7 @@ public class FallenAngelicon : BaseCharacter
         }
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

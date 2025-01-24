@@ -17,10 +17,8 @@ public class Calmara : BaseCharacter
 
         this.CalmaraType = CalmaraType;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Athletics,
-            ProficienciesEnum.Acrobatics,
             ProficienciesEnum.Perception,
             ProficienciesEnum.Intimidation,
             ProficienciesEnum.Streetwise,
@@ -34,8 +32,8 @@ public class Calmara : BaseCharacter
         switch(CalmaraType)
         {
             case CalmaraType.Balance:
-                this.Power = 2;
-                this.Speed = 2;
+                this.Strength = 2;
+                this.Agility = 2;
                 this.Vigor = 2;
                 this.Wit = 2;
                 this.Presence = 2;
@@ -43,8 +41,8 @@ public class Calmara : BaseCharacter
                 this.Race += " (Balance)";
                 break;
             case CalmaraType.Rage:
-                this.Power = 2;
-                this.Speed = 3;
+                this.Strength = 2;
+                this.Agility = 3;
                 this.Vigor = 3;
                 this.Wit = 2;
                 this.Presence = 0;
@@ -52,8 +50,8 @@ public class Calmara : BaseCharacter
                 this.Race += " (Rage)";
                 break;
             case CalmaraType.Joy:
-                this.Power = 1;
-                this.Speed = 2;
+                this.Strength = 1;
+                this.Agility = 2;
                 this.Vigor = 2;
                 this.Wit = 2;
                 this.Presence = 3;
@@ -61,8 +59,8 @@ public class Calmara : BaseCharacter
                 this.Race += " (Joy)";
                 break;
             case CalmaraType.Wisdom:
-                this.Power = 2;
-                this.Speed = 2;
+                this.Strength = 2;
+                this.Agility = 2;
                 this.Vigor = 2;
                 this.Wit = 3;
                 this.Presence = 1;
@@ -74,5 +72,7 @@ public class Calmara : BaseCharacter
         }
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

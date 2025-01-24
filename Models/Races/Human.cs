@@ -4,8 +4,8 @@ public class Human : BaseCharacter
 {
     public Human()
     {
-        this.Power = 2;
-        this.Speed = 2;
+        this.Strength = 2;
+        this.Agility = 2;
         this.Vigor = 2;
         this.Wit = 2;
         this.Presence = 2;
@@ -13,20 +13,17 @@ public class Human : BaseCharacter
         this.HealthDie = 8;
         this.Movement = 30;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
             ProficienciesEnum.Barter,
-            ProficienciesEnum.Charm,
-            ProficienciesEnum.Diplomacy,
             ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Deduction,
-            ProficienciesEnum.Acrobatics,
-            ProficienciesEnum.Anima,
-            ProficienciesEnum.Skulduggery,
         };
 
         this.Race = "Human";
 
         this.InitializeProficienyStats();
+
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

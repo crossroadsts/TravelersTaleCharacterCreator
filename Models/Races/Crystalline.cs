@@ -4,8 +4,8 @@ public class Crystalline : BaseCharacter
 {
     public Crystalline()
     {
-        this.Power = 2;
-        this.Speed = 1;
+        this.Strength = 2;
+        this.Agility = 1;
         this.Vigor = 4;
         this.Wit = 3;
         this.Presence = 0;
@@ -13,13 +13,11 @@ public class Crystalline : BaseCharacter
         this.HealthDie = 12;
         this.Movement = 30;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
             ProficienciesEnum.Constitution,
             ProficienciesEnum.Lore,
-            ProficienciesEnum.Athletics,
             ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Survival,
             ProficienciesEnum.Perception,
             ProficienciesEnum.Navigation,
             ProficienciesEnum.Deduction,
@@ -28,5 +26,7 @@ public class Crystalline : BaseCharacter
         this.Race = "Crystalline";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

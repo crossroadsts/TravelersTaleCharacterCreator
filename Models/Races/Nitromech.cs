@@ -4,8 +4,8 @@ public class Nitromech : BaseCharacter
 {
     public Nitromech()
     {
-        this.Power = 3;
-        this.Speed = 2;
+        this.Strength = 3;
+        this.Agility = 2;
         this.Vigor = 1;
         this.Wit = 2;
         this.Presence = 2;
@@ -13,20 +13,20 @@ public class Nitromech : BaseCharacter
         this.HealthDie = 8;
         this.Movement = 30;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Athletics,
             ProficienciesEnum.Intimidation,
             ProficienciesEnum.Cool,
             ProficienciesEnum.Barter,
             ProficienciesEnum.Streetwise,
             ProficienciesEnum.Anima,
             ProficienciesEnum.Skulduggery,
-            ProficienciesEnum.Acrobatics,
         };
 
         this.Race = "Nitromech";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

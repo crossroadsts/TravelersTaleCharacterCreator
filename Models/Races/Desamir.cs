@@ -4,8 +4,8 @@ public class Desamir : BaseCharacter
 {
     public Desamir()
     {
-        this.Power = 3;
-        this.Speed = 3;
+        this.Strength = 3;
+        this.Agility = 3;
         this.Vigor = 2;
         this.Wit = 2;
         this.Presence = 0;
@@ -13,20 +13,16 @@ public class Desamir : BaseCharacter
         this.HealthDie = 8;
         this.Movement = 30;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Athletics,
-            ProficienciesEnum.Acrobatics,
             ProficienciesEnum.Navigation,
-            ProficienciesEnum.Survival,
-            ProficienciesEnum.Streetwise,
             ProficienciesEnum.Stealth,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Constitution,
         };
 
         this.Race = "Desamir";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

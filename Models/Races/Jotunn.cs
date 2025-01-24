@@ -13,8 +13,8 @@ public class Jotunn : BaseCharacter
     
     public Jotunn(JotunnType JotunnType)
     {
-        this.Power = 3;
-        this.Speed = 1;
+        this.Strength = 3;
+        this.Agility = 1;
         this.Vigor = 4;
         this.Wit = 0;
         this.Presence = 2;
@@ -24,12 +24,9 @@ public class Jotunn : BaseCharacter
 
         this.JotunnType = JotunnType;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Athletics,
-            ProficienciesEnum.Strength,
             ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Survival,
             ProficienciesEnum.Constitution,
             ProficienciesEnum.Streetwise,
             ProficienciesEnum.Rally,
@@ -54,5 +51,7 @@ public class Jotunn : BaseCharacter
         }
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

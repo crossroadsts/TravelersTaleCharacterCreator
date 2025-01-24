@@ -19,10 +19,8 @@ public class Angelicon : BaseCharacter
 
         this.AngeliconType = AngeliconType;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Acrobatics,
-            ProficienciesEnum.Athletics,
             ProficienciesEnum.Lore,
             ProficienciesEnum.Rally,
             ProficienciesEnum.Anima,
@@ -38,8 +36,8 @@ public class Angelicon : BaseCharacter
         switch(AngeliconType)
         {
             case AngeliconType.Warrior:
-                this.Power = 3;
-                this.Speed = 3;
+                this.Strength = 3;
+                this.Agility = 3;
                 this.Vigor = 2;
                 this.Wit = 1;
                 this.Presence = 1;
@@ -48,8 +46,8 @@ public class Angelicon : BaseCharacter
                 this.Race += " (Warrior)";
                 break;
             case AngeliconType.Guardian:
-                this.Power = 3;
-                this.Speed = 1;
+                this.Strength = 3;
+                this.Agility = 1;
                 this.Vigor = 3;
                 this.Wit = 1;
                 this.Presence = 2;
@@ -58,8 +56,8 @@ public class Angelicon : BaseCharacter
                 this.Race += " (Guardian)";
                 break;
             case AngeliconType.Messenger:
-                this.Power = 2;
-                this.Speed = 3;
+                this.Strength = 2;
+                this.Agility = 3;
                 this.Vigor = 1;
                 this.Wit = 2;
                 this.Presence = 2;
@@ -72,5 +70,7 @@ public class Angelicon : BaseCharacter
         }
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

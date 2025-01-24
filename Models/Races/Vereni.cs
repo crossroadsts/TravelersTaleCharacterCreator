@@ -4,8 +4,8 @@ public class Vereni : BaseCharacter
 {
     public Vereni()
     {
-        this.Power = 1;
-        this.Speed = 3;
+        this.Strength = 1;
+        this.Agility = 3;
         this.Vigor = 2;
         this.Wit = 2;
         this.Presence = 2;
@@ -13,14 +13,11 @@ public class Vereni : BaseCharacter
         this.HealthDie = 6;
         this.Movement = 35;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Acrobatics,
-            ProficienciesEnum.Athletics,
             ProficienciesEnum.Stealth,
             ProficienciesEnum.Perception,
             ProficienciesEnum.Navigation,
-            ProficienciesEnum.Survival,
             ProficienciesEnum.Streetwise,
             ProficienciesEnum.Barter,
         };
@@ -28,5 +25,7 @@ public class Vereni : BaseCharacter
         this.Race = "Vereni";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

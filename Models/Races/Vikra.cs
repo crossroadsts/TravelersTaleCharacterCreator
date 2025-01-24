@@ -4,8 +4,8 @@ public class Vikra : BaseCharacter
 {
     public Vikra()
     {
-        this.Power = 2;
-        this.Speed = 3;
+        this.Strength = 2;
+        this.Agility = 3;
         this.Vigor = 2;
         this.Wit = 2;
         this.Presence = 1;
@@ -13,14 +13,11 @@ public class Vikra : BaseCharacter
         this.HealthDie = 8;
         this.Movement = 35;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Acrobatics,
-            ProficienciesEnum.Strength,
             ProficienciesEnum.Stealth,
             ProficienciesEnum.Intimidation,
             ProficienciesEnum.Navigation,
-            ProficienciesEnum.Survival,
             ProficienciesEnum.Perception,
             ProficienciesEnum.Anima,
             ProficienciesEnum.Cool,
@@ -29,5 +26,7 @@ public class Vikra : BaseCharacter
         this.Race = "Vikra";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

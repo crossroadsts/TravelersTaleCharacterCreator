@@ -4,8 +4,8 @@ public class Dagon : BaseCharacter
 {
     public Dagon()
     {
-        this.Power = 3;
-        this.Speed = 1;
+        this.Strength = 3;
+        this.Agility = 1;
         this.Vigor = 3;
         this.Wit = 0;
         this.Presence = 3;
@@ -13,21 +13,16 @@ public class Dagon : BaseCharacter
         this.HealthDie = 10;
         this.Movement = 30;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Athletics,
-            ProficienciesEnum.Strength,
+            ProficienciesEnum.Lifting,
             ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Constitution,
-            ProficienciesEnum.Survival,
-            ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Rally,
-            ProficienciesEnum.Perception,
         };
 
         this.Race = "Dagon";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }

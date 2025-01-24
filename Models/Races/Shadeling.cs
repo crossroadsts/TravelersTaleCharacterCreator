@@ -4,8 +4,8 @@ public class Shadeling : BaseCharacter
 {
     public Shadeling()
     {
-        this.Power = 1;
-        this.Speed = 3;
+        this.Strength = 1;
+        this.Agility = 3;
         this.Vigor = 1;
         this.Wit = 2;
         this.Presence = 3;
@@ -13,13 +13,12 @@ public class Shadeling : BaseCharacter
         this.HealthDie = 6;
         this.Movement = 35;
 
-        this.PossibleProficiencies = new() 
+        this.RaceProficiencies = new() 
         {
             ProficienciesEnum.Intimidation,
             ProficienciesEnum.Cool,
             ProficienciesEnum.Skulduggery,
             ProficienciesEnum.Stealth,
-            ProficienciesEnum.Acrobatics,
             ProficienciesEnum.Streetwise,
             ProficienciesEnum.Perception,
             ProficienciesEnum.Lore,
@@ -28,5 +27,7 @@ public class Shadeling : BaseCharacter
         this.Race = "Shadeling";
 
         this.InitializeProficienyStats();
+        this.PDR = this.Strength + this.Agility + this.Vigor;
+        this.MDR = this.Vigor + this.Wit + this.Presence;
     }
 }
