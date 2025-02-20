@@ -363,18 +363,34 @@ class Program
 
             // Core Stats
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["strength"];
-            currentField.Value = new PdfString(character.Strength.ToString());
+            currentField.Value = new PdfString(ConvertCoreStatToDiceString(character.Strength));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["agility"];
-            currentField.Value = new PdfString(character.Agility.ToString());
+            currentField.Value = new PdfString(ConvertCoreStatToDiceString(character.Agility));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vigor"];
-            currentField.Value = new PdfString(character.Vigor.ToString());
+            currentField.Value = new PdfString(ConvertCoreStatToDiceString(character.Vigor));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["wit"];
-            currentField.Value = new PdfString(character.Wit.ToString());
+            currentField.Value = new PdfString(ConvertCoreStatToDiceString(character.Wit));
 
             currentField = (PdfTextField)PDFDoc.AcroForm.Fields["presence"];
+            currentField.Value = new PdfString(ConvertCoreStatToDiceString(character.Presence));
+
+            // Core Stat Modifiers
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["strength_m"];
+            currentField.Value = new PdfString(character.Strength.ToString());
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["agility_m"];
+            currentField.Value = new PdfString(character.Agility.ToString());
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["vigor_m"];
+            currentField.Value = new PdfString(character.Vigor.ToString());
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["wit_m"];
+            currentField.Value = new PdfString(character.Wit.ToString());
+
+            currentField = (PdfTextField)PDFDoc.AcroForm.Fields["presence_m"];
             currentField.Value = new PdfString(character.Presence.ToString());
 
             // Skills
