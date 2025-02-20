@@ -365,51 +365,7 @@
 #endregion
 
 
-#region Equipment
-// int eq1 = 0;
-// int eq2 = 0;
-// int eq3 = 0;
 
-// bool eqCheckFailed = true;
-// while(eqCheckFailed) {
-//     Console.WriteLine("Select 3 pieces of Equipment (press enter after each):");
-//     foreach (EquipmentEnum eq in Enum.GetValues(typeof(EquipmentEnum)))
-//     {
-//         Console.WriteLine((int)eq + ": " + GetDisplayName(eq));
-//     }
-
-//     eq1 = Convert.ToInt32(Console.ReadLine());
-//     eq2 = Convert.ToInt32(Console.ReadLine());
-//     eq3 = Convert.ToInt32(Console.ReadLine());
-
-//     HashSet<int> eqs = new(){eq1, eq2, eq3};
-//     eqCheckFailed = eqs.Count != 3;
-
-//     if (eqCheckFailed) {
-//         Console.WriteLine("\nYou can only pick each piece of Equipment one time.");
-//     }
-// }
-
-// character.Equipment = new()
-// {
-//     (EquipmentEnum)eq1,
-//     (EquipmentEnum)eq2,
-//     (EquipmentEnum)eq3,
-// };
-
-// foreach (var selectedEq in character.Equipment)
-// {
-//     switch(selectedEq) {
-//         case EquipmentEnum.Other:
-//             Console.WriteLine("What \"Other...\" Equipment do you want? (1 item):");
-//             character.otherEquipment = Console.ReadLine();
-//             break;
-//         default:
-//             break;
-//     }
-// }
-
-#endregion
 
 
 
@@ -714,3 +670,89 @@
 
 //     return sum *= 20;
 // }
+
+
+
+
+
+
+
+
+
+
+
+
+// static void PrintCharacter(BaseCharacter character)
+    // {
+    //     Console.WriteLine("**************************************************");
+    //     Console.WriteLine("**************************************************");
+    //     Console.WriteLine("**************************************************");
+    //     Console.WriteLine("**************************************************");
+    //     Console.WriteLine("**************************************************");
+        
+    //     Console.WriteLine("Core Stats:");
+    //     Console.WriteLine("Strength: " + ConvertCoreStatToDiceString(character.Strength) + " +" + character.Strength);
+    //     Console.WriteLine("Agility: " + ConvertCoreStatToDiceString(character.Agility) + " +" + character.Agility);
+    //     Console.WriteLine("Vigor: " + ConvertCoreStatToDiceString(character.Vigor) + " +" + character.Vigor);
+    //     Console.WriteLine("Wit: " + ConvertCoreStatToDiceString(character.Wit) + " +" + character.Wit);
+    //     Console.WriteLine("Presence: " + ConvertCoreStatToDiceString(character.Presence) + " +" + character.Presence);
+
+    //     Console.WriteLine("\n--------------------------------------------\n");
+
+    //     Console.WriteLine("Character Attributes:");
+    //     Console.WriteLine("Wound Threshold: " + character.WoundThreshold);
+    //     Console.WriteLine("Anima: " + character.AnimaStat);
+    //     Console.WriteLine("Vit Die: " + ConvertVitToDiceString(character.HealthDie));
+    //     Console.WriteLine("PDR: " + character.PDR);
+    //     Console.WriteLine("MDR: " + character.MDR);
+    //     Console.WriteLine("MVMT: " + character.Movement);
+
+    //     Console.WriteLine("\n--------------------------------------------\n");
+    //     Console.WriteLine("Proficiencies:");
+    //     Console.WriteLine("Climbing: " + ConvertIntToDiceString(character.Climbing) + CheckProf(character, ProficienciesEnum.Climbing));
+    //     Console.WriteLine("Lifting: " + ConvertIntToDiceString(character.Lifting) + CheckProf(character, ProficienciesEnum.Lifting));
+    //     Console.WriteLine("Smithing: " + ConvertIntToDiceString(character.Smithing) + CheckProf(character, ProficienciesEnum.Smithing));
+    //     Console.WriteLine("Mining: " + ConvertIntToDiceString(character.Mining) + CheckProf(character, ProficienciesEnum.Mining));
+
+    //     Console.WriteLine("\nSkulduggery: " + ConvertIntToDiceString(character.Skulduggery) + CheckProf(character, ProficienciesEnum.Skulduggery));
+    //     Console.WriteLine("Stealth: " + ConvertIntToDiceString(character.Stealth) + CheckProf(character, ProficienciesEnum.Stealth));
+    //     Console.WriteLine("Leaping: " + ConvertIntToDiceString(character.Leaping) + CheckProf(character, ProficienciesEnum.Leaping));
+    //     Console.WriteLine("Lockpicking: " + ConvertIntToDiceString(character.Lockpicking) + CheckProf(character, ProficienciesEnum.Lockpicking));
+    //     Console.WriteLine("Mechanics: " + ConvertIntToDiceString(character.Mechanics) + CheckProf(character, ProficienciesEnum.Mechanics));
+
+    //     Console.WriteLine("\nConstitution: " + ConvertIntToDiceString(character.Constitution) + CheckProf(character, ProficienciesEnum.Constitution));
+    //     Console.WriteLine("Hunting: " + ConvertIntToDiceString(character.Hunting) + CheckProf(character, ProficienciesEnum.Hunting));
+    //     Console.WriteLine("Intimidation: " + ConvertIntToDiceString(character.Intimidation) + CheckProf(character, ProficienciesEnum.Intimidation));
+    //     Console.WriteLine("Botany: " + ConvertIntToDiceString(character.Botany) + CheckProf(character, ProficienciesEnum.Botany));
+    //     Console.WriteLine("Fishing: " + ConvertIntToDiceString(character.Fishing) + CheckProf(character, ProficienciesEnum.Fishing));
+    //     Console.WriteLine("Cooking: " + ConvertIntToDiceString(character.Cooking) + CheckProf(character, ProficienciesEnum.Cooking));
+    //     Console.WriteLine("Taming: " + ConvertIntToDiceString(character.Taming) + CheckProf(character, ProficienciesEnum.Taming));
+
+    //     Console.WriteLine("\nNavigation: " + ConvertIntToDiceString(character.Navigation) + CheckProf(character, ProficienciesEnum.Navigation));
+    //     Console.WriteLine("Streetwise: " + ConvertIntToDiceString(character.Streetwise) + CheckProf(character, ProficienciesEnum.Streetwise));
+    //     Console.WriteLine("Lore: " + ConvertIntToDiceString(character.Lore) + CheckProf(character, ProficienciesEnum.Lore));
+    //     Console.WriteLine("Perception: " + ConvertIntToDiceString(character.Perception) + CheckProf(character, ProficienciesEnum.Perception));
+    //     Console.WriteLine("Anima: " + ConvertIntToDiceString(character.Anima) + CheckProf(character, ProficienciesEnum.Anima));
+    //     Console.WriteLine("Deduction: " + ConvertIntToDiceString(character.Deduction) + CheckProf(character, ProficienciesEnum.Deduction));
+    //     Console.WriteLine("Medicine: " + ConvertIntToDiceString(character.Medicine) + CheckProf(character, ProficienciesEnum.Medicine));
+    //     Console.WriteLine("Alchemy: " + ConvertIntToDiceString(character.Alchemy) + CheckProf(character, ProficienciesEnum.Alchemy));
+
+    //     Console.WriteLine("\nBarter: " + ConvertIntToDiceString(character.Barter) + CheckProf(character, ProficienciesEnum.Barter));
+    //     Console.WriteLine("Charm: " + ConvertIntToDiceString(character.Charm) + CheckProf(character, ProficienciesEnum.Charm));
+    //     Console.WriteLine("Rally: " + ConvertIntToDiceString(character.Rally) + CheckProf(character, ProficienciesEnum.Rally));
+    //     Console.WriteLine("Cool: " + ConvertIntToDiceString(character.Cool) + CheckProf(character, ProficienciesEnum.Cool));
+    //     Console.WriteLine("Diplomacy: " + ConvertIntToDiceString(character.Diplomacy) + CheckProf(character, ProficienciesEnum.Diplomacy));
+    //     Console.WriteLine("Performance: " + ConvertIntToDiceString(character.Performance) + CheckProf(character, ProficienciesEnum.Performance));
+    //     Console.WriteLine("Enchanting: " + ConvertIntToDiceString(character.Enchanting) + CheckProf(character, ProficienciesEnum.Enchanting));
+    //     Console.WriteLine("Rune Crafting: " + ConvertIntToDiceString(character.RuneCrafting) + CheckProf(character, ProficienciesEnum.RuneCrafting));
+
+    //     Console.WriteLine("\n--------------------------------------------\n");
+    //     Console.WriteLine("Fighting Skills:");
+    //     Console.WriteLine("Grapple: " + ConvertIntToDiceString(character.Grapple) + CheckFightingSkill(character, FightingSkillsEnum.Grapple));
+    //     Console.WriteLine("Shove: " + ConvertIntToDiceString(character.Shove) + CheckFightingSkill(character, FightingSkillsEnum.Shove));
+    //     Console.WriteLine("Block: " + ConvertIntToDiceString(character.Block) + CheckFightingSkill(character, FightingSkillsEnum.Block));
+    //     Console.WriteLine("Dodge: " + ConvertIntToDiceString(character.Dodge) + CheckFightingSkill(character, FightingSkillsEnum.Dodge));
+    //     Console.WriteLine("Resolve: " + ConvertIntToDiceString(character.Resolve) + CheckFightingSkill(character, FightingSkillsEnum.Resolve));
+    //     Console.WriteLine("Parry: " + ConvertIntToDiceString(character.Parry) + CheckFightingSkill(character, FightingSkillsEnum.Parry));
+    //     Console.WriteLine("Disarm: " + ConvertIntToDiceString(character.Disarm) + CheckFightingSkill(character, FightingSkillsEnum.Disarm));
+    // }

@@ -15,13 +15,22 @@ public class Nitromech : BaseCharacter
 
         this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Barter,
-            ProficienciesEnum.Streetwise,
+            ProficienciesEnum.Mechanics,
             ProficienciesEnum.Anima,
-            ProficienciesEnum.Skulduggery,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Skulduggery,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Intimidation,
+            ProficienciesEnum.Mechanics,
+            ProficienciesEnum.Anima,
+            ProficienciesEnum.Streetwise,
+            ProficienciesEnum.Dodge,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Projectile;
 
         this.Race = "Nitromech";
 

@@ -27,6 +27,6 @@ public enum RaceEnum
     Sharkfolk = 11,
     [Display(Name="Vereni")]
     Vereni = 12,
-    [Display(Name="Vikra")]
-    Vikra = 13,
+    [Display(Name="Vikran")]
+    Vikran = 13,
 }

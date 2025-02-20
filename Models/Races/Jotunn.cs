@@ -26,12 +26,22 @@ public class Jotunn : BaseCharacter
 
         this.RaceProficiencies = new() 
         {
+            ProficienciesEnum.Might,
+            ProficienciesEnum.Smithing,
+        };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Might,
+            ProficienciesEnum.Climbing,
+            ProficienciesEnum.Smithing,
             ProficienciesEnum.Intimidation,
             ProficienciesEnum.Constitution,
-            ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Rally,
-            ProficienciesEnum.Cool,
+            ProficienciesEnum.Lore,
         };
+
+        // Shields
+        this.WeaponProficiency = WeaponTypesEnum.Hammer;
 
         this.Race = "Jotunn";
 

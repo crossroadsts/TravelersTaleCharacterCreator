@@ -19,13 +19,22 @@ public class Calmara : BaseCharacter
 
         this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Perception,
-            ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Stealth,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Constitution,
+            ProficienciesEnum.Acrobatics,
+            ProficienciesEnum.Brawl,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Brawl,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Stealth,
+            ProficienciesEnum.Deduction,
+            ProficienciesEnum.Rally,
+            ProficienciesEnum.Acrobatics,
+            ProficienciesEnum.Might,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Fists;
 
         this.Race = "Calmara";
 

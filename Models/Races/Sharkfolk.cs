@@ -29,13 +29,22 @@ public class Sharkfolk : BaseCharacter
         this.RaceProficiencies = new() 
         {
             ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Skulduggery,
-            ProficienciesEnum.Stealth,
-            ProficienciesEnum.Streetwise,
             ProficienciesEnum.Perception,
-            ProficienciesEnum.Lore,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Might,
+            ProficienciesEnum.Stealth,
+            ProficienciesEnum.Constitution,
+            ProficienciesEnum.Intimidation,
+            ProficienciesEnum.Fishing,
+            ProficienciesEnum.Perception,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Cool,
+        };
+
+        // None
 
         this.Race = "Sharkfolk";
 

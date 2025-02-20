@@ -22,14 +22,21 @@ public class Angelicon : BaseCharacter
         this.RaceProficiencies = new() 
         {
             ProficienciesEnum.Lore,
-            ProficienciesEnum.Rally,
             ProficienciesEnum.Anima,
-            ProficienciesEnum.Diplomacy,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Perception,
-            ProficienciesEnum.Navigation,
-            ProficienciesEnum.Intimidation,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Charm,
+            ProficienciesEnum.Diplomacy,
+            ProficienciesEnum.Intimidation,
+            ProficienciesEnum.Lore,
+            ProficienciesEnum.Anima,
+            ProficienciesEnum.Enchanting,
+            ProficienciesEnum.Dodge,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Mace;
 
         this.Race = "Angelicon";
 

@@ -20,14 +20,21 @@ public class FallenAngelicon : BaseCharacter
         this.RaceProficiencies = new() 
         {
             ProficienciesEnum.Skulduggery,
-            ProficienciesEnum.Stealth,
-            ProficienciesEnum.Lore,
             ProficienciesEnum.Charm,
-            ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Deduction,
-            ProficienciesEnum.Cool,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Stealth,
+            ProficienciesEnum.Skulduggery,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Intimidation,
+            ProficienciesEnum.Diplomacy,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Charm,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Dagger;
 
         this.Race = "Fallen Angelicon";
 

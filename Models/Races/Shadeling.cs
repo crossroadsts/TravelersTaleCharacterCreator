@@ -15,14 +15,22 @@ public class Shadeling : BaseCharacter
 
         this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Intimidation,
-            ProficienciesEnum.Cool,
-            ProficienciesEnum.Skulduggery,
+            ProficienciesEnum.Deduction,
             ProficienciesEnum.Stealth,
-            ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Perception,
-            ProficienciesEnum.Lore,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Stealth,
+            ProficienciesEnum.Skulduggery,
+            ProficienciesEnum.Barter,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Alchemy,
+            ProficienciesEnum.Deduction,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Sword;
 
         this.Race = "Shadeling";
 

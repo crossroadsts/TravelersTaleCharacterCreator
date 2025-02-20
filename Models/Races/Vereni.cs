@@ -15,12 +15,22 @@ public class Vereni : BaseCharacter
 
         this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Stealth,
-            ProficienciesEnum.Perception,
-            ProficienciesEnum.Navigation,
-            ProficienciesEnum.Streetwise,
-            ProficienciesEnum.Barter,
+            ProficienciesEnum.Acrobatics,
+            ProficienciesEnum.Rally,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Perception,
+            ProficienciesEnum.Deduction,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Rally,
+            ProficienciesEnum.Acrobatics,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Hunting,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Polearm;
 
         this.Race = "Vereni";
 

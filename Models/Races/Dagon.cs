@@ -15,14 +15,30 @@ public class Dagon : BaseCharacter
 
         this.RaceProficiencies = new() 
         {
-            ProficienciesEnum.Lifting,
+            ProficienciesEnum.Might,
             ProficienciesEnum.Intimidation,
         };
+
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Intimidation,
+            ProficienciesEnum.Might,
+            ProficienciesEnum.Climbing,
+            ProficienciesEnum.Piloting,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Constitution,
+        };
+
+        // Shields
+        this.WeaponProficiency = WeaponTypesEnum.Axe;
 
         this.Race = "Dagon";
 
         this.InitializeProficienyStats();
         this.PDR = this.Strength + this.Agility + this.Vigor;
         this.MDR = this.Vigor + this.Wit + this.Presence;
+
+        // DagonScale Armor
+        this.PDR += 2;
     }
 }

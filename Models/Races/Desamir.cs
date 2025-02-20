@@ -19,6 +19,19 @@ public class Desamir : BaseCharacter
             ProficienciesEnum.Stealth,
         };
 
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Navigation,
+            ProficienciesEnum.Stealth,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Skulduggery,
+            ProficienciesEnum.Cool,
+            ProficienciesEnum.Perception,
+            ProficienciesEnum.Medicine,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Dagger;
+
         this.Race = "Desamir";
 
         this.InitializeProficienyStats();

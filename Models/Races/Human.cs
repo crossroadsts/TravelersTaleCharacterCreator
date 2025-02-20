@@ -19,6 +19,19 @@ public class Human : BaseCharacter
             ProficienciesEnum.Streetwise,
         };
 
+        this.RaceSkills = new() 
+        {
+            ProficienciesEnum.Barter,
+            ProficienciesEnum.Streetwise,
+            ProficienciesEnum.Dodge,
+            ProficienciesEnum.Charm,
+            ProficienciesEnum.Cooking,
+            ProficienciesEnum.Performance,
+            ProficienciesEnum.Rally,
+        };
+
+        this.WeaponProficiency = WeaponTypesEnum.Sword;
+
         this.Race = "Human";
 
         this.InitializeProficienyStats();
